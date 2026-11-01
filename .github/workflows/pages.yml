@@ -33,7 +33,7 @@ jobs:
       - name: Check external links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --max-retries 3 --exclude linkedin.com --exclude chatgpt.com --exclude claude.ai --exclude perplexity.ai --exclude 'ernestmoyo\.com' --exclude malariaatlas.org 'dist/**/*.html' 'dist/**/*.txt' 'dist/cv.json'
+          args: --no-progress --max-retries 3 --root-dir ${{ github.workspace }}/dist --exclude linkedin.com --exclude chatgpt.com --exclude claude.ai --exclude perplexity.ai --exclude 'ernestmoyo\.com' --exclude malariaatlas.org 'dist/**/*.html' 'dist/**/*.txt' 'dist/cv.json'
           fail: true
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
