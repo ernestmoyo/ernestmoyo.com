@@ -5,15 +5,28 @@
     "label": "Epidemiologist and Health Data Scientist | Bayesian malaria mapping and AI for health in Africa",
     "email": "ernestmoyo35@gmail.com",
     "url": "https://ernestmoyo.com",
-    "summary": "Epidemiologist and health data scientist with 15 years in data, analytics and digital systems, nine of them in public health with ministries of health across Southern and East Africa. I work across the full life of a model inside a health system: data engineering, Bayesian and machine-learning modelling, validation, implementation and governance. Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute), PhD researcher in applied mathematics at NM-AIST, and Co-Founder and CEO of 7Square Inc., which builds AI agents and decision platforms for African institutions. I trained as an actuary before moving into public health.",
+    "summary": "Epidemiologist and health data scientist with 15 years in data, analytics and digital systems, nine of them in public health with ministries of health across Southern and East Africa. I work across the full life of a model inside a health system: data engineering, Bayesian and machine-learning modelling, validation, implementation and governance. Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute), PhD researcher in applied mathematics at NM-AIST, and Co-Founder and CEO of 7Square Inc. (founded 2021), which builds AI agents and decision platforms for African institutions. I trained as an actuary before moving into public health.",
     "location": {
       "city": "Dar es Salaam",
       "countryCode": "TZ",
       "region": "East Africa"
     },
     "profiles": [
-      { "network": "LinkedIn", "username": "ernest-moyo-96aa3813", "url": "https://www.linkedin.com/in/ernest-moyo-96aa3813/" },
-      { "network": "GitHub", "username": "ernestmoyo", "url": "https://github.com/ernestmoyo" }
+      {
+        "network": "LinkedIn",
+        "username": "ernest-moyo-96aa3813",
+        "url": "https://www.linkedin.com/in/ernest-moyo-96aa3813/"
+      },
+      {
+        "network": "GitHub",
+        "username": "ernestmoyo",
+        "url": "https://github.com/ernestmoyo"
+      },
+      {
+        "network": "ORCID",
+        "username": "0009-0007-0295-2805",
+        "url": "https://orcid.org/0009-0007-0295-2805"
+      }
     ]
   },
   "work": [
@@ -22,7 +35,7 @@
       "position": "Co-Founder and CEO",
       "url": "https://7squareinc.com",
       "location": "Dar es Salaam, Tanzania",
-      "startDate": "2025",
+      "startDate": "2021",
       "summary": "African AI and digital-transformation company building AI agents, decision platforms and data systems for governments, NGOs and companies.",
       "highlights": [
         "Ships AI-enabled software, LLM agents used in daily operations, and decision dashboards for clients in Tanzania, Zimbabwe, Namibia and the wider SADC region.",
@@ -77,12 +90,12 @@
       "summary": "Country-level analysis of malaria treatment markets and stakeholder influence pathways across governments, national malaria programmes, regulators and financing bodies."
     },
     {
-      "name": "Pan-African Mosquito Control Association (PAMCA)",
+      "name": "Ifakara Health Institute (host), NTD Modelling Consortium project with PAMCA and the University of Oxford",
       "position": "Senior Data Scientist",
-      "location": "Tanzania",
+      "location": "Dar es Salaam, Tanzania",
       "startDate": "2024-02",
       "endDate": "2025-07",
-      "summary": "Predictive models for malaria and neglected tropical disease elimination.",
+      "summary": "Hosted by Ifakara Health Institute on a Neglected Tropical Diseases Modelling Consortium project run with the Pan-African Mosquito Control Association (PAMCA) and the University of Oxford. Built predictive models for malaria and NTD elimination.",
       "highlights": [
         "Designed and led the build of MosquitoDB, a vector-surveillance database, and its web decision-support tools.",
         "Supervised a team of five."
@@ -185,15 +198,31 @@
     {
       "institution": "National University of Science and Technology (NUST), Zimbabwe",
       "area": "Actuarial Science",
-      "studyType": "Honours degree",
+      "studyType": "BCom (Honours)",
       "endDate": "2010"
     }
   ],
   "certificates": [
-    { "name": "Introduction to Mathematical Models of Infectious Diseases", "issuer": "Imperial College London", "date": "2026-09" },
-    { "name": "Malaria Atlas Project Train-the-Trainer", "issuer": "Malaria Atlas Project", "date": "2025" },
-    { "name": "DHIS2 Implementation and Management", "issuer": "Ministry of Health and Child Care Zimbabwe / CHAI", "date": "2018" },
-    { "name": "SAP Business Analytics and Intelligence", "issuer": "SAP", "date": "2017" }
+    {
+      "name": "Introduction to Mathematical Models of Infectious Diseases",
+      "issuer": "Imperial College London",
+      "date": "2026-09"
+    },
+    {
+      "name": "Malaria Atlas Project Train-the-Trainer",
+      "issuer": "Malaria Atlas Project",
+      "date": "2025"
+    },
+    {
+      "name": "DHIS2 Implementation and Management",
+      "issuer": "Ministry of Health and Child Care Zimbabwe / CHAI",
+      "date": "2018"
+    },
+    {
+      "name": "SAP Business Analytics and Intelligence",
+      "issuer": "SAP",
+      "date": "2017"
+    }
   ],
   "publications": [
     {
@@ -218,88 +247,214 @@
     }
   ],
   "awards": [
-    { "title": "Oral presentation accepted, ASTMH Annual Meeting 2026", "date": "2026-11", "awarder": "American Society of Tropical Medicine and Hygiene" },
-    { "title": "Poster, ASTMH Annual Meeting 2025 (Toronto)", "date": "2025-11", "awarder": "American Society of Tropical Medicine and Hygiene" },
-    { "title": "Participant, 'Built with Opus 4.7' hackathon", "date": "2026-04", "awarder": "Anthropic" }
+    {
+      "title": "Oral presentation accepted, ASTMH Annual Meeting 2026",
+      "date": "2026-11",
+      "awarder": "American Society of Tropical Medicine and Hygiene"
+    },
+    {
+      "title": "Poster, ASTMH Annual Meeting 2025 (Toronto)",
+      "date": "2025-11",
+      "awarder": "American Society of Tropical Medicine and Hygiene"
+    },
+    {
+      "title": "Participant, 'Built with Opus 4.7' hackathon",
+      "date": "2026-04",
+      "awarder": "Anthropic"
+    }
   ],
   "skills": [
-    { "name": "Bayesian and spatial modelling", "keywords": ["Gaussian processes", "geostatistics", "small-area estimation", "force of infection", "malaria risk stratification", "greta", "Stan", "INLA", "PyMC"] },
-    { "name": "Epidemiology and public health", "keywords": ["malaria elimination", "neglected tropical diseases", "surveillance", "programme evaluation", "systematic review (PRISMA)", "health financing"] },
-    { "name": "AI and agents", "keywords": ["LLM agents", "Model Context Protocol (MCP)", "retrieval and tool use", "clinical decision support", "AI readiness and governance (NIST AI RMF, ISO/IEC 42001)"] },
-    { "name": "Data engineering", "keywords": ["R", "Python", "SQL", "PostgreSQL / PostGIS", "ETL and APIs", "Docker", "Git", "Quarto"] },
-    { "name": "Health information systems", "keywords": ["DHIS2 (Tracker)", "ODK", "KoboToolbox", "SurveyCTO"] },
-    { "name": "Geospatial", "keywords": ["QGIS", "ArcGIS", "Google Earth Engine", "remote-sensing covariates"] }
+    {
+      "name": "Bayesian and spatial modelling",
+      "keywords": [
+        "Gaussian processes",
+        "geostatistics",
+        "small-area estimation",
+        "force of infection",
+        "malaria risk stratification",
+        "greta",
+        "Stan",
+        "INLA",
+        "PyMC"
+      ]
+    },
+    {
+      "name": "Epidemiology and public health",
+      "keywords": [
+        "malaria elimination",
+        "neglected tropical diseases",
+        "surveillance",
+        "programme evaluation",
+        "systematic review (PRISMA)",
+        "health financing"
+      ]
+    },
+    {
+      "name": "AI and agents",
+      "keywords": [
+        "LLM agents",
+        "Model Context Protocol (MCP)",
+        "retrieval and tool use",
+        "clinical decision support",
+        "AI readiness and governance (NIST AI RMF, ISO/IEC 42001)"
+      ]
+    },
+    {
+      "name": "Data engineering",
+      "keywords": [
+        "R",
+        "Python",
+        "SQL",
+        "PostgreSQL / PostGIS",
+        "ETL and APIs",
+        "Docker",
+        "Git",
+        "Quarto"
+      ]
+    },
+    {
+      "name": "Health information systems",
+      "keywords": [
+        "DHIS2 (Tracker)",
+        "ODK",
+        "KoboToolbox",
+        "SurveyCTO"
+      ]
+    },
+    {
+      "name": "Geospatial",
+      "keywords": [
+        "QGIS",
+        "ArcGIS",
+        "Google Earth Engine",
+        "remote-sensing covariates"
+      ]
+    }
   ],
   "languages": [
-    { "language": "English", "fluency": "Full professional" },
-    { "language": "Shona", "fluency": "Native" },
-    { "language": "Kiswahili", "fluency": "Professional working" },
-    { "language": "Portuguese", "fluency": "Elementary" }
+    {
+      "language": "English",
+      "fluency": "Full professional"
+    },
+    {
+      "language": "Shona",
+      "fluency": "Native"
+    },
+    {
+      "language": "Kiswahili",
+      "fluency": "Professional working"
+    },
+    {
+      "language": "Portuguese",
+      "fluency": "Elementary"
+    }
   ],
   "interests": [
-    { "name": "Open to", "keywords": ["Modelling, data science and AI roles in global health, multilaterals and technology companies", "Consultancies in malaria analytics, NTDs and digital health", "Advisory roles on AI strategy and governance in Africa", "Speaking on AI agents for science and public health"] }
+    {
+      "name": "Open to",
+      "keywords": [
+        "Modelling, data science and AI roles in global health, multilaterals and technology companies",
+        "Consultancies in malaria analytics, NTDs and digital health",
+        "Advisory roles on AI strategy and governance in Africa",
+        "Speaking on AI agents for science and public health"
+      ]
+    }
   ],
   "projects": [
     {
       "name": "map-agent",
       "description": "MCP server that lets Claude Code query Malaria Atlas Project data (prevalence, incidence, interventions, vectors) in natural language. Independent project, not an official MAP product.",
       "url": "https://github.com/ernestmoyo/map-agent",
-      "keywords": ["MCP", "malaria", "agents"],
+      "keywords": [
+        "MCP",
+        "malaria",
+        "agents"
+      ],
       "type": "software"
     },
     {
       "name": "EpiWave force-of-infection model",
       "description": "Two-stage malaria force-of-infection framework: a mechanistic Ross-Macdonald model with Bayesian calibration in greta. Core of the PhD.",
       "url": "https://github.com/ernestmoyo/epiwave-foi-model",
-      "keywords": ["Bayesian", "greta", "R", "malaria"],
+      "keywords": [
+        "Bayesian",
+        "greta",
+        "R",
+        "malaria"
+      ],
       "type": "software"
     },
     {
       "name": "Sefer",
       "description": "A discovery, naming and trust layer for AI agents: DNS for agents, sitting above MCP, A2A and HTTP.",
       "url": "https://github.com/ernestmoyo/sefer",
-      "keywords": ["agents", "discovery", "trust"],
+      "keywords": [
+        "agents",
+        "discovery",
+        "trust"
+      ],
       "type": "software"
     },
     {
       "name": "SIRS: SADC Impact Risk Studio",
       "description": "Disaster-risk decision prototype built on the INFORM Subnational Risk Model, presented to the SADC Disaster Risk Reduction Unit and partners in February 2026 (simulated data).",
       "url": "https://github.com/ernestmoyo/sirs",
-      "keywords": ["disaster risk", "SADC", "decision support"],
+      "keywords": [
+        "disaster risk",
+        "SADC",
+        "decision support"
+      ],
       "type": "prototype"
     },
     {
       "name": "LegiWatch",
       "description": "AI legislative-intelligence platform for Zimbabwe: track parliamentary bills, search ten years of publications and ask questions about legislation.",
       "url": "https://github.com/ernestmoyo/legiwatch",
-      "keywords": ["civic tech", "Zimbabwe", "RAG"],
+      "keywords": [
+        "civic tech",
+        "Zimbabwe",
+        "RAG"
+      ],
       "type": "software"
     },
     {
       "name": "WardPulse",
       "description": "Ward-level service-delivery intelligence for 78 wards across Harare, Chitungwiza and Epworth, Zimbabwe.",
       "url": "https://github.com/ernestmoyo/wardpulse",
-      "keywords": ["civic tech", "Zimbabwe"],
+      "keywords": [
+        "civic tech",
+        "Zimbabwe"
+      ],
       "type": "software"
     },
     {
       "name": "Pharmacogenomics Made Simple",
       "description": "Turns raw laboratory genomic results into actionable, personalised medication reports for physicians, with deprescribing support.",
       "url": "https://github.com/ernestmoyo/pharmacogenomics-made-simple",
-      "keywords": ["pharmacogenomics", "clinical decision support"],
+      "keywords": [
+        "pharmacogenomics",
+        "clinical decision support"
+      ],
       "type": "software"
     },
     {
       "name": "MosquitoDB",
       "description": "Continental vector-surveillance database and decision-support tools built for the Pan-African Mosquito Control Association.",
-      "keywords": ["vector surveillance", "PAMCA"],
+      "keywords": [
+        "vector surveillance",
+        "PAMCA"
+      ],
       "type": "platform"
     },
     {
       "name": "Zimbabwe national DHIS2 Tracker rollout for malaria",
       "description": "Led the country's first national DHIS2 Tracker rollout for malaria case and focus investigation, with CHAI and the Ministry of Health and Child Care.",
       "startDate": "2017",
-      "keywords": ["DHIS2", "surveillance", "Zimbabwe"],
+      "keywords": [
+        "DHIS2",
+        "surveillance",
+        "Zimbabwe"
+      ],
       "type": "programme"
     }
   ],
@@ -307,14 +462,58 @@
     "canonical": "https://ernestmoyo.com/cv.json",
     "version": "1.0.0",
     "lastModified": "2026-11-01T00:00:00Z",
-    "countries": ["Tanzania", "Zimbabwe", "Namibia", "South Africa", "Angola", "Mozambique", "Lesotho", "Kenya", "Burundi", "Uganda", "Zambia", "Malawi", "Rwanda"],
-    "countryCodes": ["TZA", "ZWE", "NAM", "ZAF", "AGO", "MOZ", "LSO", "KEN", "BDI", "UGA", "ZMB", "MWI", "RWA"],
+    "countries": [
+      "Tanzania",
+      "Zimbabwe",
+      "Namibia",
+      "South Africa",
+      "Angola",
+      "Mozambique",
+      "Lesotho",
+      "Kenya",
+      "Burundi",
+      "Uganda",
+      "Zambia",
+      "Malawi",
+      "Rwanda"
+    ],
+    "countryCodes": [
+      "TZA",
+      "ZWE",
+      "NAM",
+      "ZAF",
+      "AGO",
+      "MOZ",
+      "LSO",
+      "KEN",
+      "BDI",
+      "UGA",
+      "ZMB",
+      "MWI",
+      "RWA"
+    ],
     "nationality": "Zimbabwean",
     "proverbs": [
-      { "lang": "sw", "text": "Haba na haba hujaza kibaba.", "gloss": "Little by little fills the measure." },
-      { "lang": "sn", "text": "Chara chimwe hachitswanyi inda.", "gloss": "One thumb cannot crush a louse." },
-      { "lang": "sw", "text": "Penye nia pana njia.", "gloss": "Where there is a will, there is a way." },
-      { "lang": "sw", "text": "Asiyefunzwa na mamaye hufunzwa na ulimwengu.", "gloss": "Whoever is not taught by their mother is taught by the world." }
+      {
+        "lang": "sw",
+        "text": "Haba na haba hujaza kibaba.",
+        "gloss": "Little by little fills the measure."
+      },
+      {
+        "lang": "sn",
+        "text": "Chara chimwe hachitswanyi inda.",
+        "gloss": "One thumb cannot crush a louse."
+      },
+      {
+        "lang": "sw",
+        "text": "Penye nia pana njia.",
+        "gloss": "Where there is a will, there is a way."
+      },
+      {
+        "lang": "sw",
+        "text": "Asiyefunzwa na mamaye hufunzwa na ulimwengu.",
+        "gloss": "Whoever is not taught by their mother is taught by the world."
+      }
     ]
   }
 }

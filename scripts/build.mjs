@@ -53,6 +53,8 @@ const graph = {
         { '@type': 'ResearchOrganization', name: 'Ifakara Health Institute', url: 'https://ihi.or.tz' },
         ORG('Clinton Health Access Initiative'),
         ORG('Pan-African Mosquito Control Association'),
+        ORG('NTD Modelling Consortium'),
+        { '@type': 'CollegeOrUniversity', name: 'University of Oxford' },
       ],
       alumniOf: cv.education.map(e => ({ '@type': 'CollegeOrUniversity', name: e.institution, ...(e.url && { url: e.url }) })),
       hasOccupation: cv.work.filter(isCurrent).map(w => ({
@@ -68,6 +70,7 @@ const graph = {
       ],
       knowsLanguage: cv.languages.map(l => l.language),
       sameAs,
+      identifier: b.profiles.filter(p => p.network === 'ORCID').map(p => ({ '@type': 'PropertyValue', propertyID: 'ORCID', value: p.username, url: p.url })),
       subjectOf: cv.publications.map((_, i) => ({ '@id': `${SITE}/#pub-${i + 1}` })),
     },
     {
@@ -249,8 +252,7 @@ const html = `<!doctype html>
 <link rel="alternate" type="text/markdown" href="/llms-full.txt" title="CV for LLMs (Markdown)">
 <link rel="alternate" type="text/plain" href="/cv.txt" title="CV (plain text)">
 <link rel="service-desc" type="application/json" href="/openapi.json">
-<link rel="me" href="https://github.com/ernestmoyo">
-<link rel="me" href="https://www.linkedin.com/in/ernest-moyo-96aa3813/">
+${b.profiles.map(p => `<link rel="me" href="${esc(p.url)}">`).join('\n')}
 <link rel="preload" href="/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2l12 7v14l-12 7-12-7V9z' fill='%23B5421F'/%3E%3C/svg%3E">
 <meta property="og:type" content="profile">
