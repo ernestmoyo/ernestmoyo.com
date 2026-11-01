@@ -1,0 +1,15 @@
+{
+  "name": "ernestmoyo",
+  "version": "1.0.0",
+  "description": "Ernest Moyo — epidemiologist, Bayesian malaria modeller and AI builder in Africa. CV in your terminal and an MCP server for agents: npx ernestmoyo",
+  "type": "module",
+  "bin": { "ernestmoyo": "bin.mjs" },
+  "files": ["bin.mjs", "lib.mjs", "cv.snapshot.json", "README.md"],
+  "engines": { "node": ">=18" },
+  "keywords": ["ernest-moyo", "cv", "resume", "mcp", "mcp-server", "malaria", "epidemiology", "africa", "ai-agents"],
+  "homepage": "https://ernestmoyo.com",
+  "repository": { "type": "git", "url": "git+https://github.com/ernestmoyo/ernestmoyo.com.git", "directory": "cli" },
+  "author": { "name": "Ernest Moyo", "email": "ernestmoyo35@gmail.com", "url": "https://ernestmoyo.com" },
+  "license": "MIT",
+  "mcpName": "io.github.ernestmoyo/ernestmoyo"
+}
