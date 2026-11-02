@@ -5,7 +5,7 @@
     "label": "Epidemiologist and Health Data Scientist | Bayesian malaria mapping and AI for health in Africa",
     "email": "ernestmoyo35@gmail.com",
     "url": "https://ernestmoyo.com",
-    "summary": "Epidemiologist and health data scientist with 15 years in data, analytics and digital systems, nine of them in public health with ministries of health across Southern and East Africa. I work across the full life of a model inside a health system: data engineering, Bayesian and machine-learning modelling, validation, implementation and governance. Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute), PhD researcher in applied mathematics at NM-AIST, and Co-Founder and CEO of 7Square Inc. (founded 2021), which builds AI agents and decision platforms for African institutions, and Co-Founder of Hoop Africa Foundation (Namibia, Tanzania and the DRC). I trained as an actuary before moving into public health.",
+    "summary": "Epidemiologist and health data scientist with 15 years in data and analytics, nine of them in public health with ministries of health across Southern and East Africa. Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute), PhD researcher in applied mathematics at NM-AIST, Co-Founder and CEO of 7Square Inc. (founded 2021) and Co-Founder of Hoop Africa Foundation. Trained as an actuary.",
     "location": {
       "city": "Dar es Salaam",
       "countryCode": "TZ",
@@ -36,10 +36,9 @@
       "url": "https://7squareinc.com",
       "location": "Dar es Salaam, Tanzania",
       "startDate": "2021",
-      "summary": "African AI and digital-transformation company building AI agents, decision platforms and data systems for governments, NGOs and companies.",
+      "summary": "AI and digital-transformation company building software, AI agents and data systems for governments, NGOs and companies.",
       "highlights": [
-        "Ships AI-enabled software, LLM agents used in daily operations, and decision dashboards for clients in Tanzania, Zimbabwe, Namibia and the wider SADC region.",
-        "Builds agent-native research tooling, including an MCP server for Malaria Atlas Project data."
+        "Clients in Tanzania, Zimbabwe, Namibia and the wider SADC region."
       ]
     },
     {
@@ -47,7 +46,7 @@
       "position": "Co-Founder",
       "url": "https://hoopafrica.org",
       "location": "Namibia, Tanzania and the Democratic Republic of the Congo",
-      "summary": "African-led foundation that unlocks Africa’s human capital by supporting neglected areas through strategic management, research, innovation and sustainable development. Operations in Namibia, Tanzania and the DRC."
+      "summary": "Foundation supporting neglected areas across Africa through research, innovation and development programmes."
     },
     {
       "name": "Artificial Intelligence Technical Advisory Committees, Namibia",
@@ -61,7 +60,7 @@
       "position": "Literature Review Consultant",
       "location": "Remote",
       "startDate": "2026-05",
-      "summary": "Co-designs the inclusion criteria, search strategy (PRISMA 2020 / PROSPERO) and an LLM-assisted screening workflow for a systematic review on climate and fungal disease."
+      "summary": "Systematic review on climate and fungal disease: inclusion criteria, search strategy and screening."
     },
     {
       "name": "NGS Engineering Solutions",
@@ -70,7 +69,6 @@
       "startDate": "2025-06",
       "summary": "Designed the NGS AI Readiness Audit and its online diagnostic.",
       "highlights": [
-        "Five-dimension, 1-to-5 maturity model mapped to the NIST AI RMF, ISO/IEC 42001 and the EU AI Act.",
         "2026: facilitation team for an AI programme for young entrepreneurs at the Gordon Institute of Business Science (GIBS), South Africa."
       ]
     },
@@ -99,7 +97,7 @@
       "location": "Dar es Salaam, Tanzania",
       "startDate": "2024-02",
       "endDate": "2025-07",
-      "summary": "Hosted by Ifakara Health Institute on a Neglected Tropical Diseases Modelling Consortium project run with the Pan-African Mosquito Control Association (PAMCA) and the University of Oxford. Built predictive models for malaria and NTD elimination.",
+      "summary": "Hosted by Ifakara Health Institute on a Neglected Tropical Diseases Modelling Consortium project with the Pan-African Mosquito Control Association (PAMCA) and the University of Oxford. Built predictive models for malaria and NTD elimination.",
       "highlights": [
         "Designed and led the build of MosquitoDB, a vector-surveillance database, and its web decision-support tools.",
         "Supervised a team of five."
@@ -278,11 +276,6 @@
       "title": "Poster, ASTMH Annual Meeting 2025 (Toronto)",
       "date": "2025-11",
       "awarder": "American Society of Tropical Medicine and Hygiene"
-    },
-    {
-      "title": "Participant, 'Built with Opus 4.7' hackathon",
-      "date": "2026-04",
-      "awarder": "Anthropic"
     }
   ],
   "skills": [
@@ -385,7 +378,7 @@
   "projects": [
     {
       "name": "map-agent",
-      "description": "MCP server that lets Claude Code query Malaria Atlas Project data (prevalence, incidence, interventions, vectors) in natural language. Independent project, not an official MAP product.",
+      "description": "MCP server for querying Malaria Atlas Project data (prevalence, incidence, interventions, vectors) in natural language. Independent project, not an official MAP product.",
       "url": "https://github.com/ernestmoyo/map-agent",
       "keywords": [
         "MCP",
@@ -408,7 +401,7 @@
     },
     {
       "name": "Sefer",
-      "description": "A discovery, naming and trust layer for AI agents: DNS for agents, sitting above MCP, A2A and HTTP.",
+      "description": "Discovery, naming and trust layer for AI agents.",
       "url": "https://github.com/ernestmoyo/sefer",
       "keywords": [
         "agents",
@@ -515,28 +508,6 @@
       "RWA"
     ],
     "nationality": "Zimbabwean",
-    "proverbs": [
-      {
-        "lang": "sw",
-        "text": "Haba na haba hujaza kibaba.",
-        "gloss": "Little by little fills the measure."
-      },
-      {
-        "lang": "sn",
-        "text": "Chara chimwe hachitswanyi inda.",
-        "gloss": "One thumb cannot crush a louse."
-      },
-      {
-        "lang": "sw",
-        "text": "Penye nia pana njia.",
-        "gloss": "Where there is a will, there is a way."
-      },
-      {
-        "lang": "sw",
-        "text": "Asiyefunzwa na mamaye hufunzwa na ulimwengu.",
-        "gloss": "Whoever is not taught by their mother is taught by the world."
-      }
-    ],
     "mentions": [
       {
         "name": "Ernest Moyo — Love Beat Foundation team",

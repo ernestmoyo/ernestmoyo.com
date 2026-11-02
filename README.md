@@ -22,3 +22,12 @@ Hero map: Malaria Atlas Project *Pf*PR<sub>2-10</sub> 2022 surface (CC BY 3.0), 
 4. To refresh the npm CLI: bump `cli/package.json` version, then `cd cli && npm publish`.
 
 Preview locally: `npx http-server dist -p 4173`.
+
+## Writing articles
+
+1. Copy `content/articles/_template.md` to `content/articles/<web-address>.md` (for example `malaria-maps-for-ministries.md`).
+2. Fill in the front matter (`title`, `date`, `summary`, `tags`) and write the article in Markdown below it.
+   - Already published on LinkedIn or elsewhere? Add `url:` and leave the body empty to just link out, or paste the text too.
+   - `draft: true` keeps it off the site.
+3. Images go in `content/articles/images/` and are referenced as `/articles/images/<file>`.
+4. Commit and push. The build adds the article to the home page, `/articles`, `/feed.xml`, `llms.txt` and `/api/v1/articles.json`.

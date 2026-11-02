@@ -1,16 +1,20 @@
 // Builds dist/ from data/cv.json. Zero dependencies: `node scripts/build.mjs`.
 // Every public file (human page, JSON-LD, Markdown, llms.txt, API, OpenAPI, CLI snapshot)
 // is derived from cv.json so facts can never drift between surfaces.
-import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE, esc, fmtDate, range, isCurrent, isBoard, toMarkdown, toText } from './lib.mjs';
+import { loadArticles, mdToHtml } from './articles.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'dist');
 const cv = JSON.parse(readFileSync(join(ROOT, 'data/cv.json'), 'utf8'));
 const hex = JSON.parse(readFileSync(join(ROOT, 'data/africa-hex.json'), 'utf8'));
 const b = cv.basics;
+const articles = loadArticles(join(ROOT, 'content/articles'));
+const aHref = a => a.url && !a.body ? a.url : `${SITE}/articles/${a.slug}`;
+const aDate = d => { const [y, m, dd] = d.split('-'); return `${+dd} ${fmtDate(`${y}-${m}`)}`; };
 const updated = cv.meta.lastModified.slice(0, 10);
 
 rmSync(OUT, { recursive: true, force: true });
@@ -161,7 +165,10 @@ Ernest Moyo is a quantitative epidemiologist who builds Bayesian spatial models 
 ## Research
 ${cv.publications.map(p => `- [${p.name}](${p.url}): ${p.publisher}, ${p.releaseDate.slice(0, 4)}`).join('\n')}
 
-## Software
+${articles.length ? `## Writing
+${articles.map(a => `- [${a.title}](${aHref(a)}): ${a.date}${a.summary ? '. ' + a.summary : ''}`).join('\n')}
+
+` : ''}## Software
 ${cv.projects.filter(p => p.url).map(p => `- [${p.name}](${p.url}): ${p.description}`).join('\n')}
 
 ## Elsewhere
@@ -175,7 +182,11 @@ ${cv.interests[0].keywords.map(k => `- ${k}`).join('\n')}
 - ${b.email}
 `;
 
-const llmsFull = `${md}
+const llmsFull = `${md}${articles.length ? `
+## Writing
+
+${articles.map(a => `- ${a.title} (${a.date}): ${aHref(a)}`).join('\n')}
+` : ''}
 ---
 
 ## For AI agents
@@ -194,6 +205,7 @@ const API = {
   projects: cv.projects,
   skills: cv.skills,
   boards: cv.volunteer.filter(isBoard),
+  articles: articles.map(({ slug, title, date, summary, tags, url, body }) => ({ title, date, summary, tags, url: aHref({ slug, url, body }), ...(body && { markdown: `${SITE}/articles/${slug}.md` }) })),
 };
 const apiIndex = {
   name: `${b.name} — public profile API`,
@@ -220,19 +232,12 @@ const openapi = {
 // ---------------------------------------------------------------- HTML sections
 const current = cv.work.filter(isCurrent);
 const past = cv.work.filter(w => !isCurrent(w));
-const P = cv.meta.proverbs;
-const proverb = (i) => `<p class="jina"><span lang="${P[i].lang}">${esc(P[i].text)}</span> <span class="gloss">${esc(P[i].gloss)}</span></p>`;
 const role = w => `<article class="role">
   <p class="when">${esc(range(w.startDate, w.endDate))}</p>
   <div><h3>${esc(w.position)}</h3><p class="org">${w.url ? `<a href="${esc(w.url)}">${esc(w.name)}</a>` : esc(w.name)}${w.location ? ` · <span class="muted">${esc(w.location)}</span>` : ''}</p>
   ${w.summary ? `<p>${esc(w.summary)}</p>` : ''}${w.highlights?.length ? `<ul>${w.highlights.map(h => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}</div>
 </article>`;
-const askQ = encodeURIComponent(`Who is Ernest Moyo (ernestmoyo.com), the malaria modeller and 7Square founder in Dar es Salaam? Read ${SITE}/llms.txt and summarise his expertise, current roles and how to work with him.`);
-const asks = [
-  ['ChatGPT', `https://chatgpt.com/?q=${askQ}`],
-  ['Claude', `https://claude.ai/new?q=${askQ}`],
-  ['Perplexity', `https://www.perplexity.ai/search?q=${askQ}`],
-];
+const articleRow = a => `<article class="role"><p class="when">${esc(aDate(a.date))}</p><div><h3><a href="${esc(a.url && !a.body ? a.url : `/articles/${a.slug}`)}">${esc(a.title)}</a></h3>${a.summary ? `<p>${esc(a.summary)}</p>` : ''}${a.url && !a.body ? `<p class="muted mono" style="font-size:12.5px">${esc(new URL(a.url).hostname.replace(/^www./, ''))}</p>` : ''}</div></article>`;
 const endpoints = [
   ['/llms.txt', 'Index for LLMs', 'text/markdown'],
   ['/llms-full.txt', 'Whole CV, one file', 'text/markdown'],
@@ -243,33 +248,7 @@ const endpoints = [
   ['/openapi.json', 'OpenAPI 3.1 (ChatGPT Actions, tools)', 'application/json'],
 ];
 
-const html = `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ernest Moyo — Epidemiologist, malaria modeller and AI builder in Africa</title>
-<meta name="description" content="${esc(b.summary.split('. ').slice(0, 2).join('. '))}.">
-<meta name="author" content="Ernest Moyo">
-<meta name="robots" content="index, follow, max-snippet:-1">
-<link rel="canonical" href="${SITE}/">
-<link rel="alternate" type="application/json" href="/cv.json" title="CV (JSON Resume)">
-<link rel="alternate" type="text/markdown" href="/llms-full.txt" title="CV for LLMs (Markdown)">
-<link rel="alternate" type="text/plain" href="/cv.txt" title="CV (plain text)">
-<link rel="service-desc" type="application/json" href="/openapi.json">
-${b.profiles.map(p => `<link rel="me" href="${esc(p.url)}">`).join('\n')}
-<link rel="preload" href="/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2l12 7v14l-12 7-12-7V9z' fill='%23B5421F'/%3E%3C/svg%3E">
-<meta property="og:type" content="profile">
-<meta property="og:url" content="${SITE}/">
-<meta property="og:title" content="Ernest Moyo — ${esc(b.label)}">
-<meta property="og:description" content="${esc(b.summary.split('. ')[0])}.">
-<meta property="profile:first_name" content="Ernest">
-<meta property="profile:last_name" content="Moyo">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json">${JSON.stringify(graph)}</script>
-<style>
-@font-face{font-family:Fraunces;font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/fraunces-latin-wght-normal.woff2) format("woff2")}
+const CSS = `@font-face{font-family:Fraunces;font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/fraunces-latin-wght-normal.woff2) format("woff2")}
 @font-face{font-family:Fraunces;font-style:italic;font-weight:100 900;font-display:swap;src:url(/fonts/fraunces-latin-wght-italic.woff2) format("woff2")}
 @font-face{font-family:"Plex Mono";font-weight:400;font-display:swap;src:url(/fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Plex Mono";font-weight:500;font-display:swap;src:url(/fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2")}
@@ -284,24 +263,16 @@ a{color:var(--link);text-underline-offset:.18em}a:hover{color:var(--accent)}
 .skip{position:absolute;left:-999px}.skip:focus{left:16px;top:8px;background:var(--bg);padding:6px 10px;z-index:9}
 .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
 .mono,code,pre,.when,.top,.kbd{font-family:var(--mono)}
+.nav{display:flex;gap:18px}.nav a{color:var(--ink);text-decoration:none}.nav a:hover{color:var(--accent)}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)}
 .top b{color:var(--ink);font-weight:500}
-.switch{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;cursor:pointer;user-select:none}
-.switch span{padding:5px 12px}.switch input{position:absolute;opacity:0;pointer-events:none}
-.switch .h{background:var(--ink);color:var(--bg)}
-body:has(#agent:checked) .switch .h{background:none;color:inherit}body:has(#agent:checked) .switch .a{background:var(--ink);color:var(--bg)}
-body:has(#agent:focus-visible) .switch{outline:2px solid var(--link);outline-offset:3px}
 .hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center;padding:48px 0 24px}
 h1{font-size:clamp(3rem,8.5vw,6.6rem);line-height:.92;font-weight:300;letter-spacing:-.035em;margin:0 0 18px;font-variation-settings:"SOFT" 50}
 h1 em{font-style:italic;font-weight:600;color:var(--accent)}
 .label{font:500 14px/1.5 var(--mono);letter-spacing:.02em;text-transform:uppercase;color:var(--muted);margin:0 0 22px;max-width:36em}
-.lede{font-size:1.28rem;line-height:1.5;max-width:32em;margin:0 0 26px}
 .cta{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--ink);border-radius:999px;color:var(--ink);text-decoration:none;font:500 14px var(--mono)}
 .btn.solid{background:var(--ink);color:var(--bg)}.btn:hover{border-color:var(--accent);color:var(--accent)}.btn.solid:hover{background:var(--accent);color:var(--bg)}
-.npx{display:inline-flex;align-items:center;gap:10px;font:14px var(--mono);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
-.npx button{font:inherit;font-size:12px;background:none;border:1px solid var(--line);border-radius:6px;color:var(--muted);cursor:pointer;padding:2px 8px}
-.ask{font:13px var(--mono);color:var(--muted);margin-top:16px}.ask a{margin-right:10px}
 figure{margin:0}
 .map{width:100%;height:auto;max-height:82vh;display:block}
 .map path{stroke:var(--bg);stroke-width:.6;transition:stroke .2s}
@@ -315,9 +286,7 @@ figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;fon
 .border{height:14px;margin:56px 0 8px;background:
  radial-gradient(circle at 7px 7px,var(--accent) 2.2px,transparent 2.6px) 0 0/28px 14px,
  linear-gradient(var(--line),var(--line)) 0 50%/100% 1px no-repeat;opacity:.9}
-.jina{font-style:italic;font-size:1.1rem;color:var(--muted);margin:0 0 30px}.jina .gloss{font:12px var(--mono);font-style:normal;margin-left:8px}
 section h2{font:500 13px var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
-.big{font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.15;font-weight:350;letter-spacing:-.015em;margin:0 0 28px;max-width:24em}
 .role{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:20px 0;border-top:1px solid var(--line)}
 .role h3{font-size:1.25rem;font-weight:550;margin:0 0 2px;line-height:1.3}.role .org{margin:0 0 8px}.role p{margin:0 0 8px}
 .role ul{margin:6px 0 0;padding-left:18px}.role li{margin:3px 0}
@@ -335,22 +304,50 @@ table{width:100%;border-collapse:collapse;font:14px var(--mono)}td,th{text-align
 pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:13.5px;line-height:1.55;margin:0 0 14px}
 pre .c{color:var(--muted)}
 footer{border-top:1px solid var(--line);margin-top:64px;padding:26px 0 48px;font:12.5px/1.7 var(--mono);color:var(--muted)}
-.agentview{display:none}
-body:has(#agent:checked) .human{display:none}body:has(#agent:checked) .agentview{display:block}
-.agentview pre{white-space:pre-wrap;font-size:14px;padding:24px;min-height:70vh;margin:24px 0}
-.agentview pre::after{content:"▌";animation:blink 1s steps(1) infinite;color:var(--accent)}
-@keyframes blink{50%{opacity:0}}
 @media (max-width:860px){.hero{grid-template-columns:1fr;padding-top:28px}.hero figure{order:-1;max-width:460px;margin:0 auto;width:100%}.role{grid-template-columns:1fr;gap:4px}}
-@media (prefers-reduced-motion:reduce){.dar .ring,.agentview pre::after{animation:none}.dar .r2{display:none}}
-@media print{.top,.switch,.cta,.npx,.ask,figure,.border,.agentview,#for-agents{display:none!important}body{background:#fff;color:#000;font-size:11pt}.human{display:block!important}}
-</style>
+@media (prefers-reduced-motion:reduce){.dar .ring{animation:none}.dar .r2{display:none}}
+@media print{.top,.cta,figure,.border,#for-agents{display:none!important}body{background:#fff;color:#000;font-size:11pt}}
+.post{max-width:42em;margin:48px auto 0}.post h1{font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;font-weight:400;letter-spacing:-.02em;margin:8px 0 18px}
+.post .meta{font:13px var(--mono);color:var(--muted)}.post .body{font-size:1.1rem;line-height:1.7}.post .body h2,.post .body h3{margin:1.8em 0 .5em;line-height:1.25}
+.post .body img{max-width:100%;height:auto;border-radius:8px}.post blockquote{margin:1.2em 0;padding-left:18px;border-left:3px solid var(--accent);color:var(--muted)}
+.post code{font-size:.9em;background:var(--panel);padding:1px 5px;border-radius:4px}.post pre code{background:none;padding:0}
+.post hr{border:0;border-top:1px solid var(--line);margin:2em 0}
+`;
+
+const html = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ernest Moyo — Epidemiologist, malaria modeller and AI builder in Africa</title>
+<meta name="description" content="${esc(b.summary.split('. ').slice(0, 2).join('. '))}.">
+<meta name="author" content="Ernest Moyo">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<link rel="canonical" href="${SITE}/">
+<link rel="alternate" type="application/json" href="/cv.json" title="CV (JSON Resume)">
+<link rel="alternate" type="text/markdown" href="/llms-full.txt" title="CV for LLMs (Markdown)">
+<link rel="alternate" type="text/plain" href="/cv.txt" title="CV (plain text)">
+<link rel="service-desc" type="application/json" href="/openapi.json">
+<link rel="alternate" type="application/atom+xml" href="/feed.xml" title="Ernest Moyo: writing">
+${b.profiles.map(p => `<link rel="me" href="${esc(p.url)}">`).join('\n')}
+<link rel="preload" href="/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2l12 7v14l-12 7-12-7V9z' fill='%23B5421F'/%3E%3C/svg%3E">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="${SITE}/">
+<meta property="og:title" content="Ernest Moyo — ${esc(b.label)}">
+<meta property="og:description" content="${esc(b.summary.split('. ')[0])}.">
+<meta property="profile:first_name" content="Ernest">
+<meta property="profile:last_name" content="Moyo">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">${JSON.stringify(graph)}</script>
+<style>${CSS}</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
 <header class="top">
   <span><b>ernestmoyo.com</b> · updated ${updated}</span>
-  <label class="switch" title="Toggle agent view (press the backtick key)"><input type="checkbox" id="agent" aria-label="Agent view: show this page as AI agents read it"><span class="h">human</span><span class="a">agent</span></label>
+  <nav class="nav"><a href="/#now">CV</a>${articles.length ? '<a href="/articles">Writing</a>' : ''}<a href="mailto:${esc(b.email)}">Contact</a></nav>
 </header>
 
 <main id="main" class="human">
@@ -358,15 +355,12 @@ body:has(#agent:checked) .human{display:none}body:has(#agent:checked) .agentview
   <div>
     <h1>Ernest<br><em>Moyo</em></h1>
     <p class="label">${esc(b.label)}</p>
-    <p class="lede">I turn messy health data into decisions: Bayesian maps of where malaria is, and AI agents that put ministry, research and company data to work across Africa.</p>
     <div class="cta">
-      <a class="btn solid" href="mailto:${esc(b.email)}">Work with me</a>
+      <a class="btn solid" href="mailto:${esc(b.email)}">Email</a>
       <a class="btn" href="/cv.json">cv.json</a>
       <a class="btn" href="https://github.com/ernestmoyo">GitHub</a>
       <a class="btn" href="https://www.linkedin.com/in/ernest-moyo-96aa3813/">LinkedIn</a>
     </div>
-    <div class="npx"><span><span class="muted">$</span> npx ernestmoyo</span><button type="button" data-copy="npx ernestmoyo">copy</button></div>
-    <p class="ask">Ask an AI about me → ${asks.map(([n, u]) => `<a href="${esc(u)}" rel="nofollow">${n}</a>`).join('')}</p>
   </div>
   <figure>
     ${mapSvg}
@@ -375,32 +369,33 @@ body:has(#agent:checked) .human{display:none}body:has(#agent:checked) .agentview
 </div>
 
 <div class="border" aria-hidden="true"></div>
-${proverb(0)}
 <section id="now" aria-labelledby="now-h">
-  <h2 id="now-h">Now</h2>
-  <p class="big">Malaria science by day, African AI infrastructure by design. Both are the same job: make evidence usable by the people who decide.</p>
+  <h2 id="now-h">Current roles</h2>
   ${current.map(role).join('\n')}
 </section>
 
 <div class="border" aria-hidden="true"></div>
-${proverb(1)}
 <section id="track" aria-labelledby="track-h">
-  <h2 id="track-h">Track record</h2>
-  <p class="big">Actuary, then business analyst, then a decade inside malaria programmes, from district data clerks to national strategy.</p>
+  <h2 id="track-h">Experience</h2>
   ${past.slice(0, 4).map(role).join('\n')}
   <details class="past"><summary>Earlier roles (${past.length - 4})</summary>${past.slice(4).map(role).join('\n')}</details>
 </section>
 
 <div class="border" aria-hidden="true"></div>
-${proverb(2)}
 <section id="built" aria-labelledby="built-h">
-  <h2 id="built-h">Built</h2>
-  <p class="big">Software I've shipped, from Bayesian models to agent infrastructure.</p>
+  <h2 id="built-h">Projects</h2>
   <div class="cols">
   ${cv.projects.map(p => `<article class="card"><h3>${p.url ? `<a href="${esc(p.url)}">${esc(p.name)}</a>` : esc(p.name)}</h3><p>${esc(p.description)}</p><p class="mono">${esc((p.keywords || []).join(' · '))}</p></article>`).join('\n  ')}
   </div>
 </section>
 
+${articles.length ? `<div class="border" aria-hidden="true"></div>
+<section id="writing" aria-labelledby="writing-h">
+  <h2 id="writing-h">Writing</h2>
+  ${articles.slice(0, 5).map(articleRow).join('\n')}
+  ${articles.length > 5 ? `<p><a href="/articles">All articles (${articles.length})</a></p>` : ''}
+</section>
+` : ''}
 <div class="border" aria-hidden="true"></div>
 <section id="research" aria-labelledby="research-h">
   <h2 id="research-h">Research and recognition</h2>
@@ -418,7 +413,6 @@ ${proverb(2)}
 <div class="border" aria-hidden="true"></div>
 <section id="boards" aria-labelledby="boards-h">
   <h2 id="boards-h">Board seats</h2>
-  <p class="big">Non-executive roles where I help organisations grow and govern well.</p>
   <div class="cols">
   ${cv.volunteer.filter(isBoard).map(v => `<article class="card"><h3>${v.url ? `<a href="${esc(v.url)}">${esc(v.organization)}</a>` : esc(v.organization)}</h3><p class="mono">${esc(v.position)}</p><p>${esc(v.summary || '')}</p></article>`).join('\n  ')}
   </div>
@@ -432,9 +426,8 @@ ${proverb(2)}
 </section>
 
 <div class="border" aria-hidden="true"></div>
-${proverb(3)}
 <section id="skills" aria-labelledby="skills-h">
-  <h2 id="skills-h">Skills, languages, ground covered</h2>
+  <h2 id="skills-h">Skills and languages</h2>
   <div class="cols" style="margin-bottom:28px">
   ${cv.skills.map(s => `<div class="skill"><h3>${esc(s.name)}</h3><ul class="chips">${s.keywords.map(k => `<li>${esc(k)}</li>`).join('')}</ul></div>`).join('\n  ')}
   </div>
@@ -446,8 +439,7 @@ ${proverb(3)}
 
 <div class="border" aria-hidden="true"></div>
 <section id="for-agents" aria-labelledby="agents-h">
-  <h2 id="agents-h">For AI agents and the people who build them</h2>
-  <p class="big">This site is built to be read by machines first. Every file below is generated from one source, so they never disagree.</p>
+  <h2 id="agents-h">Machine-readable CV</h2>
   <div class="cols">
     <div><table><thead><tr><th>Path</th><th>What</th></tr></thead><tbody>
     ${endpoints.map(([p, w, t]) => `<tr><td><a href="${p}">${p}</a></td><td>${esc(w)} <span class="muted">${t}</span></td></tr>`).join('')}
@@ -466,26 +458,79 @@ curl -s https://ernestmoyo.com/api/v1/projects.json</pre>
 </section>
 </main>
 
-<section class="agentview" aria-label="Agent view: the plain Markdown agents read">
-<pre>${esc(llmsFull)}</pre>
-</section>
 
 <footer>
   <p>${esc(b.name)} · Dar es Salaam, Tanzania · <a href="mailto:${esc(b.email)}">${esc(b.email)}</a></p>
-  <p>Generated from <a href="/cv.json">cv.json</a> on ${updated}. Map: Malaria Atlas Project <i>Pf</i>PR<sub>2–10</sub> 2022, aggregated to a 0.9° hex grid (<a href="/data/africa-hex.json">data</a>). No trackers, no cookies, no third-party requests.</p>
+  <p>Generated from <a href="/cv.json">cv.json</a> on ${updated}. Map: Malaria Atlas Project <i>Pf</i>PR<sub>2–10</sub> 2022, aggregated to a 0.9° hex grid (<a href="/data/africa-hex.json">data</a>).</p>
 </footer>
 </div>
-<script>
-// Progressive enhancement only: the page is complete without JS.
-document.addEventListener('keydown',e=>{if(e.key==='\`'&&!/input|textarea/i.test(e.target.tagName)){const a=document.getElementById('agent');a.checked=!a.checked}});
-document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{navigator.clipboard?.writeText(b.dataset.copy).then(()=>{b.textContent='copied';setTimeout(()=>b.textContent='copy',1500)})}));
-</script>
 </body>
 </html>
 `;
 
 // ---------------------------------------------------------------- write everything
 put('index.html', html);
+
+// ---------------------------------------------------------------- articles
+const shell = ({ title, desc, path, ld, body }) => `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(desc)}">
+<meta name="author" content="Ernest Moyo">
+<link rel="canonical" href="${SITE}${path}">
+<link rel="alternate" type="application/atom+xml" href="/feed.xml" title="Ernest Moyo: writing">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2l12 7v14l-12 7-12-7V9z' fill='%23B5421F'/%3E%3C/svg%3E">
+<meta property="og:type" content="${ld['@type'] === 'BlogPosting' ? 'article' : 'website'}">
+<meta property="og:url" content="${SITE}${path}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(desc)}">
+<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', ...ld })}</script>
+<style>${CSS}</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><span><a href="/" style="color:inherit;text-decoration:none"><b>ernestmoyo.com</b></a></span><nav class="nav"><a href="/">CV</a><a href="/articles">Writing</a><a href="mailto:${esc(b.email)}">Contact</a></nav></header>
+<main id="main">${body}</main>
+<footer><p>${esc(b.name)} · <a href="/">ernestmoyo.com</a> · <a href="/feed.xml">Feed</a></p></footer>
+</div>
+</body>
+</html>
+`;
+const author = { '@type': 'Person', '@id': ID, name: b.name, url: SITE };
+for (const a of articles.filter(a => a.body)) {
+  const path = `/articles/${a.slug}`;
+  put(`articles/${a.slug}/index.html`, shell({
+    title: `${a.title} · Ernest Moyo`, desc: a.summary || a.title, path,
+    ld: { '@type': 'BlogPosting', headline: a.title, datePublished: a.date, ...(a.summary && { description: a.summary }), ...(a.tags.length && { keywords: a.tags.join(', ') }), url: SITE + path, author, mainEntityOfPage: SITE + path, ...(a.url && { sameAs: a.url }) },
+    body: `<article class="post"><p class="meta"><a href="/articles">Writing</a> · ${esc(aDate(a.date))}${a.tags.length ? ' · ' + esc(a.tags.join(', ')) : ''}</p><h1>${esc(a.title)}</h1>${a.summary ? `<p class="muted" style="font-size:1.2rem">${esc(a.summary)}</p>` : ''}<div class="body">${mdToHtml(a.body)}</div>${a.url ? `<p class="meta">Also published at <a href="${esc(a.url)}">${esc(new URL(a.url).hostname.replace(/^www./, ''))}</a></p>` : ''}<p class="meta">Ernest Moyo · <a href="/articles/${a.slug}.md">Markdown</a></p></article>`,
+  }));
+  put(`articles/${a.slug}.md`, `# ${a.title}
+
+${b.name}, ${a.date}${a.url ? ` · also at ${a.url}` : ''}
+
+${a.body}
+`);
+}
+put('articles/index.html', shell({
+  title: 'Writing · Ernest Moyo', desc: `Articles by ${b.name}: ${b.label}.`, path: '/articles',
+  ld: { '@type': 'Blog', name: 'Writing · Ernest Moyo', url: `${SITE}/articles`, author, blogPost: articles.map(a => ({ '@type': 'BlogPosting', headline: a.title, datePublished: a.date, url: aHref(a) })) },
+  body: `<section class="post" style="max-width:none"><h2>Writing</h2>${articles.length ? articles.map(articleRow).join('\n') : '<p class="muted">No articles yet.</p>'}</section>`,
+}));
+const xmlEsc = t => esc(t).replace(/'/g, '&apos;');
+put('feed.xml', `<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>Ernest Moyo: writing</title>
+<link href="${SITE}/articles"/><link rel="self" href="${SITE}/feed.xml"/>
+<id>${SITE}/articles</id>
+<updated>${(articles[0]?.date || updated)}T00:00:00Z</updated>
+<author><name>${b.name}</name><uri>${SITE}</uri></author>
+${articles.map(a => `<entry><title>${xmlEsc(a.title)}</title><link href="${aHref(a)}"/><id>${aHref(a)}</id><updated>${a.date}T00:00:00Z</updated>${a.summary ? `<summary>${xmlEsc(a.summary)}</summary>` : ''}${a.body ? `<content type="html">${esc(mdToHtml(a.body))}</content>` : ''}</entry>`).join('\n')}
+</feed>
+`);
+if (existsSync(join(ROOT, 'content/articles/images'))) cpSync(join(ROOT, 'content/articles/images'), join(OUT, 'articles/images'), { recursive: true });
 put('404.html', `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found · ernestmoyo.com</title><style>body{font:17px/1.6 Georgia,serif;max-width:640px;margin:15vh auto;padding:0 20px;background:#F6F1E7;color:#1A1712}@media(prefers-color-scheme:dark){body{background:#0B1324;color:#EDE6D8}}a{color:#B5421F}</style><h1>Nothing here.</h1><p>Try the <a href="/">profile</a>, <a href="/llms.txt">llms.txt</a> or <a href="/cv.json">cv.json</a>.</p>`);
 put('cv.json', json(cv));
 put('cv.md', md);
@@ -504,7 +549,7 @@ ${['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', '
 
 Sitemap: ${SITE}/sitemap.xml
 `);
-const urls = ['/', '/llms.txt', '/llms-full.txt', '/cv.json', '/cv.md', '/cv.txt', '/openapi.json', '/api/v1/index.json', ...Object.keys(API).map(k => `/api/v1/${k}.json`)];
+const urls = ['/', '/articles', '/feed.xml', ...articles.filter(a => a.body).map(a => `/articles/${a.slug}`), '/llms.txt', '/llms-full.txt', '/cv.json', '/cv.md', '/cv.txt', '/openapi.json', '/api/v1/index.json', ...Object.keys(API).map(k => `/api/v1/${k}.json`)];
 put('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>${SITE}${u}</loc><lastmod>${updated}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 const expires = new Date(Date.parse(cv.meta.lastModified) + 365 * 864e5).toISOString();
 put('.well-known/security.txt', `Contact: mailto:${b.email}\nExpires: ${expires}\nPreferred-Languages: en\nCanonical: ${SITE}/.well-known/security.txt\n`);
