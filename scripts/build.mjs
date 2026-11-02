@@ -15,6 +15,7 @@ const b = cv.basics;
 const articles = loadArticles(join(ROOT, 'content/articles'));
 const aHref = a => a.url && !a.body ? a.url : `${SITE}/articles/${a.slug}`;
 const aDate = d => { const [y, m, dd] = d.split('-'); return `${+dd} ${fmtDate(`${y}-${m}`)}`; };
+const MAILTO = `mailto:${encodeURIComponent(`${b.name} <${b.email}>`).replace("%40", "@")}`;
 const updated = cv.meta.lastModified.slice(0, 10);
 
 rmSync(OUT, { recursive: true, force: true });
@@ -347,7 +348,7 @@ ${b.profiles.map(p => `<link rel="me" href="${esc(p.url)}">`).join('\n')}
 <div class="wrap">
 <header class="top">
   <span><b>ernestmoyo.com</b> · updated ${updated}</span>
-  <nav class="nav"><a href="/#now">CV</a>${articles.length ? '<a href="/articles">Writing</a>' : ''}<a href="mailto:${esc(b.email)}">Contact</a></nav>
+  <nav class="nav"><a href="/#now">CV</a>${articles.length ? '<a href="/articles">Writing</a>' : ''}<a href="${MAILTO}">Contact</a></nav>
 </header>
 
 <main id="main" class="human">
@@ -356,7 +357,7 @@ ${b.profiles.map(p => `<link rel="me" href="${esc(p.url)}">`).join('\n')}
     <h1>Ernest<br><em>Moyo</em></h1>
     <p class="label">${esc(b.label)}</p>
     <div class="cta">
-      <a class="btn solid" href="mailto:${esc(b.email)}">Email</a>
+      <a class="btn solid" href="${MAILTO}">Email</a>
       <a class="btn" href="/cv.json">cv.json</a>
       <a class="btn" href="https://github.com/ernestmoyo">GitHub</a>
       <a class="btn" href="https://www.linkedin.com/in/ernest-moyo-96aa3813/">LinkedIn</a>
@@ -460,7 +461,7 @@ curl -s https://ernestmoyo.com/api/v1/projects.json</pre>
 
 
 <footer>
-  <p>${esc(b.name)} · Dar es Salaam, Tanzania · <a href="mailto:${esc(b.email)}">${esc(b.email)}</a></p>
+  <p>${esc(b.name)} · Dar es Salaam, Tanzania · <a href="${MAILTO}">${esc(b.email)}</a></p>
 </footer>
 </div>
 </body>
@@ -491,7 +492,7 @@ const shell = ({ title, desc, path, ld, body }) => `<!doctype html>
 </head>
 <body>
 <div class="wrap">
-<header class="top"><span><a href="/" style="color:inherit;text-decoration:none"><b>ernestmoyo.com</b></a></span><nav class="nav"><a href="/">CV</a><a href="/articles">Writing</a><a href="mailto:${esc(b.email)}">Contact</a></nav></header>
+<header class="top"><span><a href="/" style="color:inherit;text-decoration:none"><b>ernestmoyo.com</b></a></span><nav class="nav"><a href="/">CV</a><a href="/articles">Writing</a><a href="${MAILTO}">Contact</a></nav></header>
 <main id="main">${body}</main>
 <footer><p>${esc(b.name)} · <a href="/">ernestmoyo.com</a> · <a href="/feed.xml">Feed</a></p></footer>
 </div>

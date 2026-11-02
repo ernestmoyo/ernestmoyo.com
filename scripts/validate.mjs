@@ -46,7 +46,7 @@ const PUBLIC = files.filter(f => /\.(html|json|txt|md|xml)$/.test(f) && !f.start
 const ALLOWED_EMAILS = new Set(['hello@ernestmoyo.com']);
 for (const [f, s] of PUBLIC) {
   if (/(\+?(255|263|264|27)[\s-]?\d{2,3}[\s-]?\d{3}[\s-]?\d{3,4})|(\b0[67]\d[\s-]?\d{3}[\s-]?\d{3,4}\b)/.test(s)) fail(`${f}: looks like a phone number`);
-  for (const m of s.matchAll(/[\w.+-]+@[\w-]+\.[\w.]+/g)) if (!ALLOWED_EMAILS.has(m[0]) && !/^dmarc|noreply/.test(m[0])) fail(`${f}: unexpected email ${m[0]}`);
+  for (const m of s.replace(/%3C/gi, '<').replace(/%3E/gi, '>').matchAll(/[\w.+-]+@[\w-]+\.[\w.]+/g)) if (!ALLOWED_EMAILS.has(m[0]) && !/^dmarc|noreply/.test(m[0])) fail(`${f}: unexpected email ${m[0]}`);
   if (/passport|date of birth|\bDOB\b|salary/i.test(s)) fail(`${f}: sensitive keyword`);
 }
 
