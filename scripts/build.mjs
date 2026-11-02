@@ -71,7 +71,11 @@ const graph = {
       knowsLanguage: cv.languages.map(l => l.language),
       sameAs,
       identifier: b.profiles.filter(p => p.network === 'ORCID').map(p => ({ '@type': 'PropertyValue', propertyID: 'ORCID', value: p.username, url: p.url })),
-      subjectOf: cv.publications.map((_, i) => ({ '@id': `${SITE}/#pub-${i + 1}` })),
+      subjectOf: [
+        ...cv.publications.map((_, i) => ({ '@id': `${SITE}/#pub-${i + 1}` })),
+        ...(cv.meta.mentions || []).map(m => ({ '@type': 'WebPage', name: m.name, url: m.url })),
+      ],
+      memberOf: cv.volunteer.map(v => ({ '@type': 'OrganizationRole', roleName: v.position, ...(v.startDate && { startDate: v.startDate }), ...(v.endDate && { endDate: v.endDate }), memberOf: { '@type': 'Organization', name: v.organization, ...(v.url && { url: v.url }) } })),
     },
     {
       '@type': 'Organization',
@@ -405,7 +409,7 @@ ${proverb(2)}
     </div>
     <div>
       ${cv.awards.map(a => `<article class="role" style="grid-template-columns:90px 1fr"><p class="when">${esc(fmtDate(a.date))}</p><div><h3 style="font-size:1.05rem">${esc(a.title)}</h3><p class="muted">${esc(a.awarder)}</p></div></article>`).join('\n')}
-      ${cv.volunteer.map(v => `<article class="role" style="grid-template-columns:90px 1fr"><p class="when">${v.startDate ? esc(fmtDate(v.startDate).split(' ').pop()) : '·'}</p><div><h3 style="font-size:1.05rem">${esc(v.position)}</h3><p class="muted">${esc(v.organization)}</p></div></article>`).join('\n')}
+      ${cv.volunteer.map(v => `<article class="role" style="grid-template-columns:90px 1fr"><p class="when">${v.startDate ? esc(fmtDate(v.startDate).split(' ').pop()) : '·'}</p><div><h3 style="font-size:1.05rem">${esc(v.position)}</h3><p class="muted">${v.url ? `<a href="${esc(v.url)}">${esc(v.organization)}</a>` : esc(v.organization)}</p></div></article>`).join('\n')}
     </div>
   </div>
 </section>

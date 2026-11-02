@@ -166,6 +166,12 @@
       "summary": "Contributed the Zimbabwe case study and roadmap on economic openness."
     },
     {
+      "organization": "Love Beat Foundation",
+      "position": "Board Member",
+      "url": "https://lovebeatfoundation.org/our-team/ernest-moyo/",
+      "summary": "Charity running education sponsorship, water wells, support for vulnerable people and local empowerment projects."
+    },
+    {
       "organization": "Vector Atlas",
       "position": "Expert Advisory Group member"
     },
@@ -461,7 +467,7 @@
   "meta": {
     "canonical": "https://ernestmoyo.com/cv.json",
     "version": "1.0.0",
-    "lastModified": "2026-11-01T00:00:00Z",
+    "lastModified": "2026-11-02T00:00:00Z",
     "countries": [
       "Tanzania",
       "Zimbabwe",
@@ -513,6 +519,12 @@
         "lang": "sw",
         "text": "Asiyefunzwa na mamaye hufunzwa na ulimwengu.",
         "gloss": "Whoever is not taught by their mother is taught by the world."
+      }
+    ],
+    "mentions": [
+      {
+        "name": "Ernest Moyo — Love Beat Foundation team",
+        "url": "https://lovebeatfoundation.org/our-team/ernest-moyo/"
       }
     ]
   }
