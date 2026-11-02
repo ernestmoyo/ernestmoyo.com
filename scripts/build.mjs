@@ -139,7 +139,7 @@ const dar = { x: f1((39.28 - X0) * K), y: f1((Y0 + 6.8) * K) };
 const worked = cv.meta.countryCodes;
 const mapSvg = `<svg class="map" viewBox="0 0 700 730" role="img" aria-labelledby="map-t map-d">
 <title id="map-t">Malaria across Africa, 2022</title>
-<desc id="map-d">Hexagon map of Africa coloured by Plasmodium falciparum parasite rate in children aged 2 to 10 (Malaria Atlas Project, 2022). A pulse marks Dar es Salaam, where Ernest Moyo is based. Countries he has worked in are outlined.</desc>
+<desc id="map-d">Hexagon map of Africa coloured by Plasmodium falciparum parasite rate in children aged 2 to 10 (Malaria Atlas Project, 2022, CC BY 3.0). A pulse marks Dar es Salaam, where Ernest Moyo is based. Countries he has worked in are outlined.</desc>
 <g class="hexes">${svgPaths}</g>
 <g class="dar" transform="translate(${dar.x} ${dar.y})"><circle class="ring" r="6"/><circle class="ring r2" r="6"/><circle class="dot" r="3.2"/></g>
 <text class="lbl" x="${dar.x + 9}" y="${dar.y + 4}">Dar es Salaam</text>
@@ -364,7 +364,7 @@ ${b.profiles.map(p => `<link rel="me" href="${esc(p.url)}">`).join('\n')}
   </div>
   <figure>
     ${mapSvg}
-    <figcaption><span class="ramp">0% <i aria-hidden="true"></i> 78%</span><span><i>Pf</i>PR<sub>2–10</sub>, 2022 · <a href="https://data.malariaatlas.org">Malaria Atlas Project</a> (CC BY 3.0)</span></figcaption>
+    <figcaption><span class="ramp">0% <i aria-hidden="true"></i> 78%</span></figcaption>
   </figure>
 </div>
 
@@ -461,7 +461,6 @@ curl -s https://ernestmoyo.com/api/v1/projects.json</pre>
 
 <footer>
   <p>${esc(b.name)} · Dar es Salaam, Tanzania · <a href="mailto:${esc(b.email)}">${esc(b.email)}</a></p>
-  <p>Generated from <a href="/cv.json">cv.json</a> on ${updated}. Map: Malaria Atlas Project <i>Pf</i>PR<sub>2–10</sub> 2022, aggregated to a 0.9° hex grid (<a href="/data/africa-hex.json">data</a>).</p>
 </footer>
 </div>
 </body>
