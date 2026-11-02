@@ -5,7 +5,7 @@
     "label": "Epidemiologist and Health Data Scientist | Bayesian malaria mapping and AI for health in Africa",
     "email": "ernestmoyo35@gmail.com",
     "url": "https://ernestmoyo.com",
-    "summary": "Epidemiologist and health data scientist with 15 years in data, analytics and digital systems, nine of them in public health with ministries of health across Southern and East Africa. I work across the full life of a model inside a health system: data engineering, Bayesian and machine-learning modelling, validation, implementation and governance. Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute), PhD researcher in applied mathematics at NM-AIST, and Co-Founder and CEO of 7Square Inc. (founded 2021), which builds AI agents and decision platforms for African institutions. I trained as an actuary before moving into public health.",
+    "summary": "Epidemiologist and health data scientist with 15 years in data, analytics and digital systems, nine of them in public health with ministries of health across Southern and East Africa. I work across the full life of a model inside a health system: data engineering, Bayesian and machine-learning modelling, validation, implementation and governance. Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute), PhD researcher in applied mathematics at NM-AIST, and Co-Founder and CEO of 7Square Inc. (founded 2021), which builds AI agents and decision platforms for African institutions, and Co-Founder of Hoop Africa Foundation (Namibia, Tanzania and the DRC). I trained as an actuary before moving into public health.",
     "location": {
       "city": "Dar es Salaam",
       "countryCode": "TZ",
@@ -41,6 +41,13 @@
         "Ships AI-enabled software, LLM agents used in daily operations, and decision dashboards for clients in Tanzania, Zimbabwe, Namibia and the wider SADC region.",
         "Builds agent-native research tooling, including an MCP server for Malaria Atlas Project data."
       ]
+    },
+    {
+      "name": "Hoop Africa Foundation",
+      "position": "Co-Founder",
+      "url": "https://hoopafrica.org",
+      "location": "Namibia, Tanzania and the Democratic Republic of the Congo",
+      "summary": "African-led foundation that unlocks Africa’s human capital by supporting neglected areas through strategic management, research, innovation and sustainable development. Operations in Namibia, Tanzania and the DRC."
     },
     {
       "name": "Artificial Intelligence Technical Advisory Committees, Namibia",
