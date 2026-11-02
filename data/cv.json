@@ -78,10 +78,7 @@
       "url": "https://malariaatlas.org",
       "location": "Dar es Salaam, Tanzania",
       "startDate": "2025-01",
-      "summary": "Builds Bayesian and machine-learning models (Gaussian-process, geostatistical, spatio-temporal) that combine household surveys, DHIS2 routine data, entomological and satellite data into malaria risk maps.",
-      "highlights": [
-        "Supervises a team of five."
-      ]
+      "summary": "Builds Bayesian and machine-learning models (Gaussian-process, geostatistical, spatio-temporal) that combine household surveys, DHIS2 routine data, entomological and satellite data into malaria risk maps."
     },
     {
       "name": "Market Access Africa",
@@ -99,8 +96,7 @@
       "endDate": "2025-07",
       "summary": "Hosted by Ifakara Health Institute on a Neglected Tropical Diseases Modelling Consortium project with the Pan-African Mosquito Control Association (PAMCA) and the University of Oxford. Built predictive models for malaria and NTD elimination.",
       "highlights": [
-        "Designed and led the build of MosquitoDB, a vector-surveillance database, and its web decision-support tools.",
-        "Supervised a team of five."
+        "Designed and led the build of MosquitoDB, a vector-surveillance database, and its web decision-support tools."
       ]
     },
     {
