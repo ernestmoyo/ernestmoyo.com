@@ -10,7 +10,7 @@ export const fmtDate = d => {
   const [y, m] = String(d).split('-');
   return m ? `${MONTHS[+m - 1]} ${y}` : y;
 };
-export const range = (a, b) => `${fmtDate(a)}${a ? ' – ' : ''}${b ? fmtDate(b) : a ? 'present' : ''}`;
+export const range = (a, b) => !a && !b ? 'Current' : `${fmtDate(a)}${a ? ' – ' : ''}${b ? fmtDate(b) : a ? 'present' : ''}`;
 export const isCurrent = w => !w.endDate;
 
 /** Full CV as Markdown. Single renderer shared by cv.md, llms-full.txt and the CLI. */

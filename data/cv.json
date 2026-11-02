@@ -60,6 +60,13 @@
       ]
     },
     {
+      "name": "Mega Tech Engineering",
+      "position": "Director, Growth and Business Development",
+      "url": "https://megatechengineering.co.za/",
+      "location": "East London, South Africa and Zambia",
+      "summary": "Electrical, plumbing and construction services company. Leads growth and business development."
+    },
+    {
       "name": "NGS Engineering Solutions",
       "position": "AI Consultant",
       "location": "Johannesburg, South Africa (remote)",
@@ -525,6 +532,10 @@
       {
         "name": "Ernest Moyo — Love Beat Foundation team",
         "url": "https://lovebeatfoundation.org/our-team/ernest-moyo/"
+      },
+      {
+        "name": "Ernest Moyo — Mega Tech Engineering management team",
+        "url": "https://megatechengineering.co.za/#management"
       }
     ]
   }
