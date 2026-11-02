@@ -96,7 +96,7 @@
       "endDate": "2025-07",
       "summary": "Hosted by Ifakara Health Institute on a Neglected Tropical Diseases Modelling Consortium project with the Pan-African Mosquito Control Association (PAMCA) and the University of Oxford. Built predictive models for malaria and NTD elimination.",
       "highlights": [
-        "Designed and led the build of MosquitoDB, a vector-surveillance database, and its web decision-support tools."
+        "Supported the build of MosquitoDB, a vector-surveillance database, and its web decision-support tools."
       ]
     },
     {
@@ -449,7 +449,7 @@
     },
     {
       "name": "MosquitoDB",
-      "description": "Continental vector-surveillance database and decision-support tools built for the Pan-African Mosquito Control Association.",
+      "description": "Continental vector-surveillance database and decision-support tools for the Pan-African Mosquito Control Association. Contributed to the build.",
       "keywords": [
         "vector surveillance",
         "PAMCA"
