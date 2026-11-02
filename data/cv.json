@@ -60,13 +60,6 @@
       ]
     },
     {
-      "name": "Mega Tech Engineering",
-      "position": "Director, Growth and Business Development",
-      "url": "https://megatechengineering.co.za/",
-      "location": "East London, South Africa and Zambia",
-      "summary": "Electrical, plumbing and construction services company. Leads growth and business development."
-    },
-    {
       "name": "NGS Engineering Solutions",
       "position": "AI Consultant",
       "location": "Johannesburg, South Africa (remote)",
@@ -166,17 +159,29 @@
   ],
   "volunteer": [
     {
-      "organization": "Legatum Institute, Africa Prosperity Programme",
-      "position": "Fellow",
-      "startDate": "2019-10",
-      "endDate": "2021-06",
-      "summary": "Contributed the Zimbabwe case study and roadmap on economic openness."
+      "organization": "Mountfin Group",
+      "position": "Board Member",
+      "url": "https://www.mountfin.co.zw/",
+      "summary": "Diversified financial-services group in Harare, Zimbabwe: microfinance, property, microinsurance and stockbroking."
+    },
+    {
+      "organization": "Mega Tech Engineering",
+      "position": "Board Director, Growth and Business Development",
+      "url": "https://megatechengineering.co.za/",
+      "summary": "Electrical, plumbing and construction services company in East London, South Africa, and Zambia."
     },
     {
       "organization": "Love Beat Foundation",
       "position": "Board Member",
       "url": "https://lovebeatfoundation.org/our-team/ernest-moyo/",
       "summary": "Charity running education sponsorship, water wells, support for vulnerable people and local empowerment projects."
+    },
+    {
+      "organization": "Legatum Institute, Africa Prosperity Programme",
+      "position": "Fellow",
+      "startDate": "2019-10",
+      "endDate": "2021-06",
+      "summary": "Contributed the Zimbabwe case study and roadmap on economic openness."
     },
     {
       "organization": "Vector Atlas",

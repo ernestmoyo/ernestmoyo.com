@@ -12,6 +12,7 @@ export const fmtDate = d => {
 };
 export const range = (a, b) => !a && !b ? 'Current' : `${fmtDate(a)}${a ? ' – ' : ''}${b ? fmtDate(b) : a ? 'present' : ''}`;
 export const isCurrent = w => !w.endDate;
+export const isBoard = v => /board/i.test(v.position);
 
 /** Full CV as Markdown. Single renderer shared by cv.md, llms-full.txt and the CLI. */
 export function toMarkdown(cv, { site = SITE } = {}) {
@@ -42,8 +43,10 @@ export function toMarkdown(cv, { site = SITE } = {}) {
   for (const p of cv.projects) L.push(`- **${p.name}**: ${p.description}${p.url ? ' ' + p.url : ''}`);
   L.push('', '## Talks and recognition', '');
   for (const a of cv.awards) L.push(`- ${a.title} (${a.awarder}, ${fmtDate(a.date)})`);
+  L.push('', '## Board seats', '');
+  for (const v of cv.volunteer.filter(isBoard)) L.push(`- ${v.position}, ${v.organization}${v.summary ? ': ' + v.summary : ''}${v.url ? ' ' + v.url : ''}`);
   L.push('', '## Fellowships and service', '');
-  for (const v of cv.volunteer) L.push(`- ${v.position}, ${v.organization}${v.startDate ? ` (${range(v.startDate, v.endDate)})` : ''}`);
+  for (const v of cv.volunteer.filter(v => !isBoard(v))) L.push(`- ${v.position}, ${v.organization}${v.startDate ? ` (${range(v.startDate, v.endDate)})` : ''}`);
   L.push('', '## Training', '');
   for (const c of cv.certificates) L.push(`- ${c.name}, ${c.issuer} (${fmtDate(c.date)})`);
   L.push('', '## Skills', '');

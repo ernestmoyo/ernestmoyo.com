@@ -4,7 +4,7 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, esc, fmtDate, range, isCurrent, toMarkdown, toText } from './lib.mjs';
+import { SITE, esc, fmtDate, range, isCurrent, isBoard, toMarkdown, toText } from './lib.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'dist');
@@ -193,6 +193,7 @@ const API = {
   publications: cv.publications,
   projects: cv.projects,
   skills: cv.skills,
+  boards: cv.volunteer.filter(isBoard),
 };
 const apiIndex = {
   name: `${b.name} — public profile API`,
@@ -409,8 +410,17 @@ ${proverb(2)}
     </div>
     <div>
       ${cv.awards.map(a => `<article class="role" style="grid-template-columns:90px 1fr"><p class="when">${esc(fmtDate(a.date))}</p><div><h3 style="font-size:1.05rem">${esc(a.title)}</h3><p class="muted">${esc(a.awarder)}</p></div></article>`).join('\n')}
-      ${cv.volunteer.map(v => `<article class="role" style="grid-template-columns:90px 1fr"><p class="when">${v.startDate ? esc(fmtDate(v.startDate).split(' ').pop()) : '·'}</p><div><h3 style="font-size:1.05rem">${esc(v.position)}</h3><p class="muted">${v.url ? `<a href="${esc(v.url)}">${esc(v.organization)}</a>` : esc(v.organization)}</p></div></article>`).join('\n')}
+      ${cv.volunteer.filter(v => !isBoard(v)).map(v => `<article class="role" style="grid-template-columns:90px 1fr"><p class="when">${v.startDate ? esc(fmtDate(v.startDate).split(' ').pop()) : '·'}</p><div><h3 style="font-size:1.05rem">${esc(v.position)}</h3><p class="muted">${v.url ? `<a href="${esc(v.url)}">${esc(v.organization)}</a>` : esc(v.organization)}</p></div></article>`).join('\n')}
     </div>
+  </div>
+</section>
+
+<div class="border" aria-hidden="true"></div>
+<section id="boards" aria-labelledby="boards-h">
+  <h2 id="boards-h">Board seats</h2>
+  <p class="big">Non-executive roles where I help organisations grow and govern well.</p>
+  <div class="cols">
+  ${cv.volunteer.filter(isBoard).map(v => `<article class="card"><h3>${v.url ? `<a href="${esc(v.url)}">${esc(v.organization)}</a>` : esc(v.organization)}</h3><p class="mono">${esc(v.position)}</p><p>${esc(v.summary || '')}</p></article>`).join('\n  ')}
   </div>
 </section>
 
