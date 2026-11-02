@@ -43,7 +43,7 @@ for (const [, block] of ld) {
 
 // 5. Privacy: no phone numbers, no addresses beyond city, no third-party emails
 const PUBLIC = files.filter(f => /\.(html|json|txt|md|xml)$/.test(f) && !f.startsWith('data/')).map(f => [f, read(f)]);
-const ALLOWED_EMAILS = new Set(['ernestmoyo35@gmail.com']);
+const ALLOWED_EMAILS = new Set(['hello@ernestmoyo.com']);
 for (const [f, s] of PUBLIC) {
   if (/(\+?(255|263|264|27)[\s-]?\d{2,3}[\s-]?\d{3}[\s-]?\d{3,4})|(\b0[67]\d[\s-]?\d{3}[\s-]?\d{3,4}\b)/.test(s)) fail(`${f}: looks like a phone number`);
   for (const m of s.matchAll(/[\w.+-]+@[\w-]+\.[\w.]+/g)) if (!ALLOWED_EMAILS.has(m[0]) && !/^dmarc|noreply/.test(m[0])) fail(`${f}: unexpected email ${m[0]}`);

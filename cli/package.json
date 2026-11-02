@@ -9,7 +9,7 @@
   "keywords": ["ernest-moyo", "cv", "resume", "mcp", "mcp-server", "malaria", "epidemiology", "africa", "ai-agents"],
   "homepage": "https://ernestmoyo.com",
   "repository": { "type": "git", "url": "git+https://github.com/ernestmoyo/ernestmoyo.com.git", "directory": "cli" },
-  "author": { "name": "Ernest Moyo", "email": "ernestmoyo35@gmail.com", "url": "https://ernestmoyo.com" },
+  "author": { "name": "Ernest Moyo", "email": "hello@ernestmoyo.com", "url": "https://ernestmoyo.com" },
   "license": "MIT",
   "mcpName": "io.github.ernestmoyo/ernestmoyo"
 }

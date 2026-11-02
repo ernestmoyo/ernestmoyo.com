@@ -19,4 +19,4 @@ claude mcp add ernestmoyo -- npx -y ernestmoyo --mcp
 
 Tools: `get_profile`, `get_cv` (optional `section`), `search_cv` (`query`).
 
-Data comes live from https://ernestmoyo.com/cv.json, with a bundled snapshot as an offline fallback. Website: https://ernestmoyo.com · Contact: ernestmoyo35@gmail.com
+Data comes live from https://ernestmoyo.com/cv.json, with a bundled snapshot as an offline fallback. Website: https://ernestmoyo.com · Contact: hello@ernestmoyo.com
