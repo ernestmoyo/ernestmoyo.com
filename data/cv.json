@@ -5,7 +5,7 @@
     "label": "Epidemiologist and Health Data Scientist | Bayesian malaria mapping and AI for health in Africa",
     "email": "hello@ernestmoyo.com",
     "url": "https://ernestmoyo.com",
-    "summary": "Epidemiologist and health data scientist with 15 years in data and analytics, nine of them in public health with ministries of health across Southern and East Africa. Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute), PhD researcher with the Vector Atlas (University of Oxford, icipe and The Kids Research Institute Australia), registered at NM-AIST, Co-Founder and CEO of 7Square Inc. (founded 2021) and Co-Founder of Hoop Africa Foundation. Trained as an actuary.",
+    "summary": "Epidemiologist and health data scientist with 15 years in data and analytics, nine of them in public health with ministries of health across Southern and East Africa. PhD researcher with the Vector Atlas (University of Oxford, icipe and The Kids Research Institute Australia), registered at NM-AIST; Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute); Co-Founder of 7Square Inc. (founded 2021) and of Hoop Africa Foundation. Trained as an actuary.",
     "location": {
       "city": "Dar es Salaam",
       "countryCode": "TZ",
@@ -31,8 +31,16 @@
   },
   "work": [
     {
+      "name": "Vector Atlas (University of Oxford, icipe and The Kids Research Institute Australia)",
+      "position": "PhD Researcher",
+      "url": "https://vectoratlas.icipe.org/about",
+      "location": "Dar es Salaam, Tanzania",
+      "startDate": "2025",
+      "summary": "Doctoral research with the Vector Atlas, an initiative of the University of Oxford, the International Centre of Insect Physiology and Ecology (icipe) and The Kids Research Institute Australia, working alongside the Malaria Atlas Project and funded by the Gates Foundation. Registered for the PhD at the Nelson Mandela African Institution of Science and Technology (NM-AIST). Supervised by Prof. Nick Golding."
+    },
+    {
       "name": "7Square Inc.",
-      "position": "Co-Founder and CEO",
+      "position": "Co-Founder",
       "url": "https://7squareinc.com",
       "location": "Dar es Salaam, Tanzania",
       "startDate": "2021",
@@ -79,14 +87,6 @@
       "location": "Dar es Salaam, Tanzania",
       "startDate": "2025-01",
       "summary": "Builds Bayesian and machine-learning models (Gaussian-process, geostatistical, spatio-temporal) that combine household surveys, DHIS2 routine data, entomological and satellite data into malaria risk maps."
-    },
-    {
-      "name": "Vector Atlas (University of Oxford, icipe and The Kids Research Institute Australia)",
-      "position": "PhD Researcher",
-      "url": "https://vectoratlas.icipe.org/about",
-      "location": "Dar es Salaam, Tanzania",
-      "startDate": "2025",
-      "summary": "Doctoral research with the Vector Atlas, an initiative of the University of Oxford, the International Centre of Insect Physiology and Ecology (icipe) and The Kids Research Institute Australia, working alongside the Malaria Atlas Project and funded by the Gates Foundation. Registered for the PhD at the Nelson Mandela African Institution of Science and Technology (NM-AIST). Supervised by Prof. Nick Golding."
     },
     {
       "name": "Market Access Africa",
