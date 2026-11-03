@@ -39,6 +39,14 @@
       "summary": "Doctoral research with the Vector Atlas, an initiative of the University of Oxford, the International Centre of Insect Physiology and Ecology (icipe) and The Kids Research Institute Australia, working alongside the Malaria Atlas Project and funded by the Gates Foundation. Registered for the PhD at the Nelson Mandela African Institution of Science and Technology (NM-AIST). Supervised by Prof. Nick Golding."
     },
     {
+      "name": "Malaria Atlas Project, East Africa node (Ifakara Health Institute)",
+      "position": "Research Scientist",
+      "url": "https://malariaatlas.org",
+      "location": "Dar es Salaam, Tanzania",
+      "startDate": "2025-01",
+      "summary": "Builds Bayesian and machine-learning models (Gaussian-process, geostatistical, spatio-temporal) that combine household surveys, DHIS2 routine data, entomological and satellite data into malaria risk maps."
+    },
+    {
       "name": "7Square Inc.",
       "position": "Co-Founder",
       "url": "https://7squareinc.com",
@@ -79,14 +87,6 @@
       "highlights": [
         "2026: facilitation team for an AI programme for young entrepreneurs at the Gordon Institute of Business Science (GIBS), South Africa."
       ]
-    },
-    {
-      "name": "Malaria Atlas Project, East Africa node (Ifakara Health Institute)",
-      "position": "Research Scientist",
-      "url": "https://malariaatlas.org",
-      "location": "Dar es Salaam, Tanzania",
-      "startDate": "2025-01",
-      "summary": "Builds Bayesian and machine-learning models (Gaussian-process, geostatistical, spatio-temporal) that combine household surveys, DHIS2 routine data, entomological and satellite data into malaria risk maps."
     },
     {
       "name": "Market Access Africa",
