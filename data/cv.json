@@ -5,7 +5,7 @@
     "label": "Epidemiologist and Health Data Scientist | Bayesian malaria mapping and AI for health in Africa",
     "email": "hello@ernestmoyo.com",
     "url": "https://ernestmoyo.com",
-    "summary": "Epidemiologist and health data scientist with 15 years in data and analytics, nine of them in public health with ministries of health across Southern and East Africa. PhD researcher with the Vector Atlas (University of Oxford, icipe and The Kids Research Institute Australia), registered at NM-AIST; Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute); Co-Founder of 7Square Inc. (founded 2021) and of Hoop Africa Foundation. Trained as an actuary.",
+    "summary": "Epidemiologist and health data scientist with 15 years in data and analytics, nine of them in public health with ministries of health across Southern and East Africa. PhD researcher with the Vector Atlas (University of Oxford, icipe and The Kids Research Institute Australia), registered at NM-AIST; Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute); Co-Founder of 7Square Inc. (founded 2021) and of Hoop Africa Foundation. Trains national malaria programme teams in geospatial modelling and builds analytics capacity in the institutions that use the models. Trained as an actuary.",
     "location": {
       "city": "Dar es Salaam",
       "countryCode": "TZ",
@@ -46,9 +46,14 @@
       "startDate": "2025-01",
       "summary": "Builds Bayesian and machine-learning models (Gaussian-process, geostatistical, spatio-temporal) that combine household surveys, DHIS2 routine data, entomological and satellite data into malaria risk maps, working with the Malaria Atlas Project teams in Perth and Dar es Salaam and with the Vector Atlas.",
       "highlights": [
+        "Capacity building: co-designs and facilitates geospatial modelling training for national malaria programmes, including the NMCP geospatial modelling workshop in Nairobi for Kenya (April 2026, MaMOD Africa consortium) and the geospatial workshop in Maputo for Mozambique with the Manhiça Health Research Centre (CISM) (September 2026). Built the workshop materials and the interactive training dashboard used with programme teams.",
+        "Angola: malaria risk mapping with the national programme and CHAI for the national strategic plan, built on DHIS2 routine data (2020 to 2024), health-facility geocoding and data-quality review; accessibility maps and a community health worker (ADECOS) allocation analysis; results disseminated to the programme.",
+        "Mozambique: training dashboard and country profile, and scoping a community health worker allocation analysis with the national programme.",
+        "Namibia: malaria risk validation and stratification with the national programme (2026).",
         "Works with national malaria programmes and ministries of health on risk stratification, intervention targeting, Global Fund applications and programme reviews.",
         "Brings vector data into malaria risk mapping and builds workflows that carry MAP outputs into national surveillance systems and guidelines.",
-        "Runs modelling-literacy sessions and learning materials so programme staff can interpret, question and use model outputs."
+        "Key faculty in the MAP early-career researcher (ECR) training and mentorship programme (2026): developed and delivered sessions (including presentation strategy and storytelling, and software set-up), ran debriefs and office hours, and signed up to teach and mentor the second cohort. Trained through the MAP Train the Trainers course (2025).",
+        "Runs modelling-literacy sessions so programme staff can interpret, question and use model outputs."
       ]
     },
     {
@@ -314,6 +319,17 @@
   ],
   "skills": [
     {
+      "name": "Capacity building and training",
+      "keywords": [
+        "geospatial modelling workshops for national malaria programmes",
+        "training of trainers",
+        "teaching and mentoring early-career researchers (MAP ECR programme)",
+        "curriculum and workshop design",
+        "modelling literacy for decision-makers",
+        "M&E capacity building"
+      ]
+    },
+    {
       "name": "Bayesian and spatial modelling",
       "keywords": [
         "Gaussian processes",
@@ -577,6 +593,7 @@
           "Regional Epidemiologist for Southern Africa (CHAI), based in Windhoek.",
           "Designed and piloted malaria focus investigations; malaria programme review; data-use strategy with the national programme.",
           "Global Fund funding request support.",
+          "Malaria risk validation and stratification with the national programme (Malaria Atlas Project, 2026).",
           "Member of the National AI Strategy Technical Advisory Committees (2026)."
         ]
       },
@@ -598,8 +615,9 @@
         "code": "AGO",
         "presence": "worked",
         "work": [
-          "Malaria risk stratification, retrospective analyses and risk mapping (CHAI), including field work in Cuando Cubango.",
-          "Global Fund funding request support."
+          "Malaria risk mapping with the national programme and CHAI for the national strategic plan (Malaria Atlas Project, 2025 to 2026): DHIS2 data review, facility geocoding, accessibility maps and community health worker (ADECOS) allocation analysis.",
+          "Trained and worked alongside programme teams; results disseminated to the national programme.",
+          "Earlier (CHAI): risk stratification, retrospective analyses and field work in Cuando Cubango; Global Fund funding request support."
         ]
       },
       {
@@ -607,7 +625,9 @@
         "code": "MOZ",
         "presence": "worked",
         "work": [
-          "Malaria risk stratification and transmission-driver analyses with the Malaria Atlas Project and Swiss TPH (CHAI)."
+          "Geospatial modelling workshop for the national malaria programme in Maputo, with CISM (Malaria Atlas Project, September 2026): facilitator, workshop materials and training dashboard.",
+          "Mozambique country profile and scoping of a community health worker allocation analysis.",
+          "Earlier (CHAI): malaria risk stratification and transmission-driver analyses with the Malaria Atlas Project and Swiss TPH."
         ]
       },
       {
@@ -625,6 +645,7 @@
         "code": "KEN",
         "presence": "worked",
         "work": [
+          "NMCP geospatial modelling training workshop, Nairobi (Malaria Atlas Project and MaMOD Africa, April 2026): co-designed and facilitated.",
           "Seconded to CEMA, University of Nairobi, for the NTD Modelling Consortium (to 2025).",
           "Vector Atlas meetings in Nairobi (2024, 2026).",
           "M&E oversight for Higherlife Foundation programmes."
