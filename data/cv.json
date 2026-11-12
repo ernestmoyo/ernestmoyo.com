@@ -72,11 +72,12 @@
       "summary": "Contributes to Namibia's National AI Strategy, leading on data governance, data quality, access and interoperability."
     },
     {
-      "name": "Climate x Fungal Disease programme, University of Oxford (NDM / Big Data Institute) and Wellcome Trust",
-      "position": "Literature Review Consultant",
+      "name": "FABRIC (Fungal burden, risk and the impacts of climate), University of Oxford, Nuffield Department of Medicine, funded by Wellcome",
+      "position": "Consultant, Literature Review",
       "location": "Remote",
       "startDate": "2026-05",
-      "summary": "Systematic review on climate and fungal disease: inclusion criteria, search strategy and screening."
+      "summary": "FABRIC is building the global evidence base on where the most important human fungal pathogens are and how a changing climate may affect them. Contributes the systematic literature reviews on climate and fungal burden and on the reported distribution of fungal pathogens: inclusion criteria, search strategy and screening.",
+      "url": "https://www.fungal.global/"
     },
     {
       "name": "NGS Engineering Solutions",
@@ -97,12 +98,12 @@
       "summary": "Country-level analysis of malaria treatment markets and stakeholder influence pathways across governments, national malaria programmes, regulators and financing bodies."
     },
     {
-      "name": "Ifakara Health Institute (host), NTD Modelling Consortium project with PAMCA and the University of Oxford",
-      "position": "Senior Data Scientist",
+      "name": "NTD Modelling Consortium (University of Oxford, Gates Foundation)",
+      "position": "Programme Officer (PAMCA) and Research Scientist (Ifakara Health Institute)",
       "location": "Dar es Salaam, Tanzania",
       "startDate": "2024-02",
       "endDate": "2025-07",
-      "summary": "Hosted by Ifakara Health Institute on a Neglected Tropical Diseases Modelling Consortium project with the Pan-African Mosquito Control Association (PAMCA) and the University of Oxford. Built predictive models for malaria and NTD elimination.",
+      "summary": "Joined through the Gates Foundation-funded NTD Modelling Consortium grant, led by the University of Oxford Big Data Institute, in which the Pan-African Mosquito Control Association (PAMCA) builds neglected tropical disease modelling capacity in Africa with Ifakara Health Institute as its centre of excellence. Programme Officer with PAMCA from February 2024, then Research Scientist (collaborator) at Ifakara Health Institute on the DM4DM project from July 2024. Built predictive models for malaria and NTD elimination and supported national programmes to use them.",
       "highlights": [
         "Supported the build of MosquitoDB, a vector-surveillance database, and its web decision-support tools."
       ]
@@ -480,7 +481,7 @@
   "meta": {
     "canonical": "https://ernestmoyo.com/cv.json",
     "version": "1.0.0",
-    "lastModified": "2026-11-03T00:00:00Z",
+    "lastModified": "2026-11-12T00:00:00Z",
     "countries": [
       "Tanzania",
       "Zimbabwe",

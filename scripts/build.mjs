@@ -59,6 +59,7 @@ const graph = {
         ORG('Clinton Health Access Initiative'),
         ORG('Pan-African Mosquito Control Association'),
         ORG('NTD Modelling Consortium'),
+        { '@type': 'ResearchProject', name: 'FABRIC: Fungal burden, risk and the impacts of climate', url: 'https://www.fungal.global/' },
         { '@type': 'CollegeOrUniversity', name: 'University of Oxford' },
       ],
       alumniOf: cv.education.map(e => ({ '@type': 'CollegeOrUniversity', name: e.institution, ...(e.url && { url: e.url }) })),
