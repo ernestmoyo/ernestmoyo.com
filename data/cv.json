@@ -44,7 +44,12 @@
       "url": "https://malariaatlas.org",
       "location": "Dar es Salaam, Tanzania",
       "startDate": "2025-01",
-      "summary": "Builds Bayesian and machine-learning models (Gaussian-process, geostatistical, spatio-temporal) that combine household surveys, DHIS2 routine data, entomological and satellite data into malaria risk maps."
+      "summary": "Builds Bayesian and machine-learning models (Gaussian-process, geostatistical, spatio-temporal) that combine household surveys, DHIS2 routine data, entomological and satellite data into malaria risk maps, working with the Malaria Atlas Project teams in Perth and Dar es Salaam and with the Vector Atlas.",
+      "highlights": [
+        "Works with national malaria programmes and ministries of health on risk stratification, intervention targeting, Global Fund applications and programme reviews.",
+        "Brings vector data into malaria risk mapping and builds workflows that carry MAP outputs into national surveillance systems and guidelines.",
+        "Runs modelling-literacy sessions and learning materials so programme staff can interpret, question and use model outputs."
+      ]
     },
     {
       "name": "7Square Inc.",
@@ -105,6 +110,7 @@
       "endDate": "2025-07",
       "summary": "Joined through the Gates Foundation-funded NTD Modelling Consortium grant, led by the University of Oxford Big Data Institute, in which the Pan-African Mosquito Control Association (PAMCA) builds neglected tropical disease modelling capacity in Africa with Ifakara Health Institute as its centre of excellence. Senior Research and Data Scientist with PAMCA from February 2024, then Research Scientist (collaborator) at Ifakara Health Institute on the DM4DM project from July 2024. Built predictive models for malaria and NTD elimination and supported national programmes to use them.",
       "highlights": [
+        "Seconded to the Center for Epidemiological Modelling and Analysis (CEMA), University of Nairobi, to continue the NTD Modelling Consortium work until July 2025.",
         "Supported the build of MosquitoDB, a vector-surveillance database, and its web decision-support tools."
       ]
     },
