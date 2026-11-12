@@ -32,6 +32,11 @@ export function toMarkdown(cv, { site = SITE } = {}) {
     for (const h of w.highlights || []) L.push(`- ${h}`);
     if (w.highlights?.length) L.push('');
   }
+  if (cv.meta?.activities?.length) {
+    L.push('## Talks, training and events', '');
+    for (const a of cv.meta.activities) L.push(`- ${a.date.slice(0, 4)} · ${a.type}: ${a.title}${a.event ? ` (${a.event})` : ''}`);
+    L.push('');
+  }
   L.push('## Education', '');
   for (const e of cv.education) {
     L.push(`- **${e.studyType}, ${e.area}**, ${e.institution}${e.startDate || e.endDate ? ` (${e.endDate ? fmtDate(e.endDate) : fmtDate(e.startDate) + ' – present'})` : ''}`);
