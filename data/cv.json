@@ -174,7 +174,8 @@
       "highlights": [
         "Led Zimbabwe's first national rollout of DHIS2 Tracker for malaria case and focus investigation.",
         "Developed surveillance indicators and mapping guidelines; the focus-investigation guidelines were later adopted by other countries.",
-        "Trained health staff from provincial to ward level."
+        "Trained health staff from provincial to ward level.",
+        "Cross-border malaria collaboration with Botswana."
       ]
     },
     {
@@ -538,7 +539,8 @@
       "Uganda",
       "Zambia",
       "Malawi",
-      "Rwanda"
+      "Rwanda",
+      "Botswana"
     ],
     "countryCodes": [
       "TZA",
@@ -553,7 +555,8 @@
       "UGA",
       "ZMB",
       "MWI",
-      "RWA"
+      "RWA",
+      "BWA"
     ],
     "nationality": "Zimbabwean",
     "mentions": [
@@ -641,6 +644,13 @@
         "line": "Regional malaria meeting, Entebbe (2023); business-intelligence clients (TTCS)."
       },
       {
+        "country": "Botswana",
+        "code": "BWA",
+        "presence": "worked",
+        "see": "CHAI), with the Ministry",
+        "line": "Cross-border malaria collaboration with Zimbabwe (CHAI malaria elimination programme, 2017 to 2019)."
+      },
+      {
         "country": "Lesotho",
         "code": "LSO",
         "presence": "worked",
@@ -681,11 +691,6 @@
         "presence": "remote",
         "see": "Market Access Africa",
         "line": "Malaria treatment stakeholder research (Market Access Africa)."
-      },
-      {
-        "country": "Botswana",
-        "code": "BWA",
-        "presence": "visited"
       },
       {
         "country": "Democratic Republic of the Congo",
