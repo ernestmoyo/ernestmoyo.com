@@ -358,6 +358,7 @@
       "name": "AI and agents",
       "keywords": [
         "LLM agents",
+        "Claude Code (agentic software engineering)",
         "Model Context Protocol (MCP)",
         "retrieval and tool use",
         "clinical decision support",
@@ -601,7 +602,7 @@
         "code": "AGO",
         "presence": "worked",
         "see": "Malaria Atlas Project",
-        "line": "Malaria risk mapping, accessibility and community health worker allocation for the national strategic plan (MAP with CHAI)."
+        "line": "Malaria risk mapping and health worker allocation for the national strategic plan (MAP with CHAI); led a modelling workshop in Luanda and is mentoring five programme staff through a one-year modelling programme."
       },
       {
         "country": "Mozambique",
@@ -707,6 +708,152 @@
         "presence": "visited",
         "outsideAfrica": true,
         "line": "ASTMH annual meeting, Toronto (2025)"
+      }
+    ],
+    "activities": [
+      {
+        "date": "2026-11",
+        "type": "Oral presentation (accepted)",
+        "title": "Bridging borders, bridging data: a cross-border malaria connectivity framework for Angola and Namibia through centralised analytical partnership",
+        "event": "ASTMH 2026 Annual Meeting, National Harbor, USA"
+      },
+      {
+        "date": "2026-11",
+        "type": "Panellist",
+        "title": "Advancing malaria research, policy and analytics capacity in Africa through geospatial modelling",
+        "event": "Malaria Atlas Project symposium, IHI@70 and 5th Ifakara Annual Scientific Conference, Dar es Salaam"
+      },
+      {
+        "date": "2026-10",
+        "type": "Workshop lead",
+        "title": "Malaria modelling with entomological data, introducing the Vector Atlas; the national programme then assigned five staff to a one-year modelling capacity-building programme",
+        "event": "National Malaria Control Programme, Luanda, Angola"
+      },
+      {
+        "date": "2026-10",
+        "type": "Workshop",
+        "title": "Vector Atlas workshop",
+        "event": "icipe, Nairobi, Kenya"
+      },
+      {
+        "date": "2026-09",
+        "type": "Facilitator",
+        "title": "Geospatial modelling workshop for the national malaria programme",
+        "event": "CISM and Malaria Atlas Project, Maputo, Mozambique"
+      },
+      {
+        "date": "2026-09",
+        "type": "Course",
+        "title": "Infectious disease modelling short course",
+        "event": "Imperial College London"
+      },
+      {
+        "date": "2026-08",
+        "type": "Faculty",
+        "title": "Presentation strategy and storytelling (co-led session)",
+        "event": "MAP early-career researcher training and mentorship programme"
+      },
+      {
+        "date": "2026-05",
+        "type": "Talk",
+        "title": "Malaria risk-mapping outputs and district risk stratification for the Global Fund cycle, and an introduction to the Vector Atlas",
+        "event": "Ministry of Health and Social Services, National Vector-borne Diseases Control Programme (model validation), Namibia"
+      },
+      {
+        "date": "2026-04",
+        "type": "Facilitator",
+        "title": "Introduction to geospatial evidence for policy: maps, spatial analysis and geospatial modelling",
+        "event": "Geospatial Modelling for Evidence-Driven Malaria Policy and Programme Planning, Nairobi, Kenya (MaMOD Africa)"
+      },
+      {
+        "date": "2026-04",
+        "type": "Hackathon",
+        "title": "Mapping malaria-vector abundance and temperature- and humidity-driven biting rates for transmission modelling (team participant)",
+        "event": "MoDD Africa Modelling Hackathon, Zanzibar"
+      },
+      {
+        "date": "2026-04",
+        "type": "Technical meeting",
+        "title": "Integrating spatial estimates of vector biology into epidemiological malaria models; shaping the three-year modelling concept",
+        "event": "Vector Atlas 2 Technical Meeting, icipe, Nairobi"
+      },
+      {
+        "date": "2026",
+        "type": "Talk",
+        "title": "Sub-national tailoring for malaria control: from risk-mapping outputs to country-level decision-making",
+        "event": "Joint IHI, MAP and Data Science Journal Club, Tanzania"
+      },
+      {
+        "date": "2026",
+        "type": "Three Minute Thesis",
+        "title": "Putting the mosquito into the malaria risk map, for better sub-national tailoring of malaria control",
+        "event": "The Kids Research Institute Australia student 3MT"
+      },
+      {
+        "date": "2026",
+        "type": "Graduate seminar",
+        "title": "Applying malaria risk-mapping and vector-modelling skills in industry and internships",
+        "event": "NM-AIST Advanced Outreach and Internship Programme"
+      },
+      {
+        "date": "2026",
+        "type": "Journal club",
+        "title": "Ross, Macdonald, and a theory for the dynamics and control of mosquito-transmitted pathogens (Smith et al. 2012)",
+        "event": "Vector Atlas PhD cohort"
+      },
+      {
+        "date": "2025-11",
+        "type": "Conference",
+        "title": "ASTMH 2025 Annual Meeting",
+        "event": "Toronto, Canada"
+      },
+      {
+        "date": "2025-11",
+        "type": "Training",
+        "title": "Train the Trainers course",
+        "event": "Malaria Atlas Project"
+      },
+      {
+        "date": "2025-01",
+        "type": "Conference",
+        "title": "NTD research conference (InCORNTD)",
+        "event": "Kigali, Rwanda"
+      },
+      {
+        "date": "2024-12",
+        "type": "Meeting",
+        "title": "Vector Atlas policy makers and expert advisory group meetings",
+        "event": "icipe, Nairobi, Kenya"
+      },
+      {
+        "date": "2024-04",
+        "type": "Conference",
+        "title": "Multilateral Initiative on Malaria (MIM) Pan-African Malaria Conference",
+        "event": "Kigali, Rwanda"
+      },
+      {
+        "date": "2023-11",
+        "type": "Conference",
+        "title": "Conference on Public Health in Africa (CPHIA 2023)",
+        "event": "Lusaka, Zambia"
+      },
+      {
+        "date": "2023-07",
+        "type": "Meeting",
+        "title": "Elimination 8 (E8) regional malaria meeting",
+        "event": "Lusaka, Zambia"
+      },
+      {
+        "date": "2023-04",
+        "type": "Meeting",
+        "title": "Global MAST meeting",
+        "event": "Johannesburg, South Africa"
+      },
+      {
+        "date": "2022-12",
+        "type": "Conference",
+        "title": "Conference on Public Health in Africa (CPHIA 2022)",
+        "event": "Kigali, Rwanda"
       }
     ]
   }

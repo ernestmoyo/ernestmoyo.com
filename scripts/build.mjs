@@ -170,7 +170,8 @@ const fpSvg = `<svg class="fpmap" viewBox="${geo.viewBox}" role="img" aria-label
 ${route}
 ${homes.map(h => { const left = h.city !== 'Harare'; return `<g class="home${h === now ? ' now' : ''}">${h === now ? `<circle class="ring" cx="${h.xy[0]}" cy="${h.xy[1]}" r="7"/>` : ''}<circle class="dot" cx="${h.xy[0]}" cy="${h.xy[1]}" r="5.5"/><text x="${h.xy[0] + (left ? -11 : 11)}" y="${h.xy[1] + 5}" text-anchor="${left ? 'end' : 'start'}">${esc(h.city)}${h === now ? ' · now' : ''}</text></g>`; }).join('')}
 </svg>`;
-const fpLabel = { lived: 'Lived and worked', worked: 'Worked in', remote: 'Remote work', visited: 'Visited' };
+const actRow = a => `<article class="role act"><p class="when">${esc(a.date.length > 4 ? fmtDate(a.date) : a.date)}</p><div><p class="atype">${esc(a.type)}</p><h3>${esc(a.title)}</h3><p class="muted">${esc(a.event)}</p></div></article>`;
+const fpLabel ={ lived: 'Lived and worked', worked: 'Worked in', remote: 'Remote work', visited: 'Visited' };
 const fpRow = f => { const href = f.see && seeHref(f.see); return `<article class="fpc" tabindex="0" data-c="${f.code}"><h3><i class="sw p-${f.presence}"></i>${esc(f.country)} <span class="tag">${fpLabel[f.presence]}${f.years ? ', ' + esc(f.years) : ''}</span></h3><p>${esc(f.line)}${href ? ` <a class="more" href="${href}">See more</a>` : ''}</p></article>`; };
 const fpCss = `.fpwrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:32px;align-items:start}
 .fpmap{width:100%;height:auto;position:sticky;top:16px;overflow:visible}
@@ -188,7 +189,8 @@ const fpCss = `.fpwrap{display:grid;grid-template-columns:minmax(0,1.05fr) minma
 .tag{font:500 11.5px var(--mono);color:var(--muted);margin-left:6px;white-space:nowrap}
 ${fpAfrica.map(f => `body:has(.fpc[data-c="${f.code}"]:hover) .fpmap .${f.code},body:has(.fpc[data-c="${f.code}"]:focus) .fpmap .${f.code}`).join(',')}{fill:var(--ink)}
 @media (max-width:860px){.fpwrap{grid-template-columns:1fr}.fpmap{position:static;max-width:520px;margin:0 auto}}
-@media (prefers-reduced-motion:reduce){.home .ring{animation:none}}`;
+@media (prefers-reduced-motion:reduce){.home .ring{animation:none}}
+.act{padding:14px 0}.act h3{font-size:1.05rem;margin:0 0 2px}.act p{margin:0}.atype{font:500 11.5px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:0 0 3px!important}`;
 
 
 // ---------------------------------------------------------------- agent surfaces
@@ -449,6 +451,13 @@ ${fp.length ? `<div class="border" aria-hidden="true"></div>
   </div>
 </section>
 
+${cv.meta.activities?.length ? `<div class="border" aria-hidden="true"></div>
+<section id="talks" aria-labelledby="talks-h">
+  <h2 id="talks-h">Talks, training and events</h2>
+  ${cv.meta.activities.slice(0, 8).map(actRow).join('\n  ')}
+  <details class="past"><summary>Earlier talks and events (${cv.meta.activities.length - 8})</summary>${cv.meta.activities.slice(8).map(actRow).join('\n')}</details>
+</section>
+` : ''}
 ${articles.length ? `<div class="border" aria-hidden="true"></div>
 <section id="writing" aria-labelledby="writing-h">
   <h2 id="writing-h">Writing</h2>
