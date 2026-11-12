@@ -44,16 +44,13 @@
       "url": "https://malariaatlas.org",
       "location": "Dar es Salaam, Tanzania",
       "startDate": "2025-01",
-      "summary": "Builds Bayesian and machine-learning models (Gaussian-process, geostatistical, spatio-temporal) that combine household surveys, DHIS2 routine data, entomological and satellite data into malaria risk maps, working with the Malaria Atlas Project teams in Perth and Dar es Salaam and with the Vector Atlas.",
+      "summary": "Scientific and technical support to the MAP East Africa node, working with the Malaria Atlas Project teams in Perth and Dar es Salaam and with the Vector Atlas to plan analytic support for national malaria programmes. Builds Bayesian and machine-learning models (Gaussian-process, geostatistical, spatio-temporal) that combine household surveys, DHIS2 routine data, entomological and satellite data into malaria risk maps.",
       "highlights": [
-        "Capacity building: co-designs and facilitates geospatial modelling training for national malaria programmes, including the NMCP geospatial modelling workshop in Nairobi for Kenya (April 2026, MaMOD Africa consortium) and the geospatial workshop in Maputo for Mozambique with the Manhiça Health Research Centre (CISM) (September 2026). Built the workshop materials and the interactive training dashboard used with programme teams.",
-        "Angola: malaria risk mapping with the national programme and CHAI for the national strategic plan, built on DHIS2 routine data (2020 to 2024), health-facility geocoding and data-quality review; accessibility maps and a community health worker (ADECOS) allocation analysis; results disseminated to the programme.",
-        "Mozambique: training dashboard and country profile, and scoping a community health worker allocation analysis with the national programme.",
-        "Namibia: malaria risk validation and stratification with the national programme (2026).",
-        "Works with national malaria programmes and ministries of health on risk stratification, intervention targeting, Global Fund applications and programme reviews.",
-        "Brings vector data into malaria risk mapping and builds workflows that carry MAP outputs into national surveillance systems and guidelines.",
-        "Key faculty in the MAP early-career researcher (ECR) training and mentorship programme (2026): developed and delivered sessions (including presentation strategy and storytelling, and software set-up), ran debriefs and office hours, and signed up to teach and mentor the second cohort. Trained through the MAP Train the Trainers course (2025).",
-        "Runs modelling-literacy sessions so programme staff can interpret, question and use model outputs."
+        "Capacity building and modelling literacy: builds learning tracks and trains national malaria programme staff to interpret, question and apply model outputs, including geospatial modelling workshops in Nairobi for Kenya (April 2026, MaMOD Africa) and in Maputo for Mozambique with CISM (September 2026); key faculty in the MAP early-career researcher programme.",
+        "Surveillance and risk stratification: workflows that carry geospatial outputs into stratification, Global Fund applications, programme reviews and national surveillance guidelines, including risk validation and stratification with Namibia (2026).",
+        "Angola: risk mapping with the national programme and CHAI for the national strategic plan, from DHIS2 routine data (2020 to 2024), facility geocoding and data-quality review, with accessibility maps and a community health worker allocation analysis.",
+        "Stakeholder engagement: translates MAP methods and outputs for ministries of health and partners (WHO, CHAI, PATH), and proactively brings modelling products to programmes where they add value.",
+        "Model enhancement: brings vector data into malaria risk mapping (PhD focus) and prepares analysable datasets from surveillance reports, surveys and environmental covariates."
       ]
     },
     {
