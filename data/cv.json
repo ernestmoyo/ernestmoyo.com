@@ -551,6 +551,187 @@
         "name": "Ernest Moyo — Mega Tech Engineering management team",
         "url": "https://megatechengineering.co.za/#management"
       }
+    ],
+    "footprint": [
+      {
+        "country": "Zimbabwe",
+        "code": "ZWE",
+        "presence": "lived",
+        "years": "until 2021",
+        "city": "Harare",
+        "work": [
+          "Malaria elimination surveillance with the Ministry of Health and Child Care (CHAI), including the first DHIS2 tracker for malaria case investigation.",
+          "Head of Research, M&E at Higherlife Foundation, including cholera elimination planning with the Ministry of Health and WHO.",
+          "COVID-19 outbreak investigation report for WHO Zimbabwe and the Ministry of Health (2020-2021).",
+          "Malaria programme review and Global Fund funding request support.",
+          "Earlier career as trainee actuary and business analyst in Harare."
+        ]
+      },
+      {
+        "country": "Namibia",
+        "code": "NAM",
+        "presence": "lived",
+        "years": "2021 to 2024",
+        "city": "Windhoek",
+        "work": [
+          "Regional Epidemiologist for Southern Africa (CHAI), based in Windhoek.",
+          "Designed and piloted malaria focus investigations; malaria programme review; data-use strategy with the national programme.",
+          "Global Fund funding request support.",
+          "Member of the National AI Strategy Technical Advisory Committees (2026)."
+        ]
+      },
+      {
+        "country": "Tanzania",
+        "code": "TZA",
+        "presence": "lived",
+        "years": "2024 to now",
+        "city": "Dar es Salaam",
+        "work": [
+          "Research Scientist, Malaria Atlas Project East Africa node at Ifakara Health Institute.",
+          "PhD researcher with the Vector Atlas, registered at NM-AIST.",
+          "Co-Founder of 7Square Inc., Dar es Salaam.",
+          "Tanzania Country Lead on multi-country malaria treatment stakeholder research (Market Access Africa)."
+        ]
+      },
+      {
+        "country": "Angola",
+        "code": "AGO",
+        "presence": "worked",
+        "work": [
+          "Malaria risk stratification, retrospective analyses and risk mapping (CHAI), including field work in Cuando Cubango.",
+          "Global Fund funding request support."
+        ]
+      },
+      {
+        "country": "Mozambique",
+        "code": "MOZ",
+        "presence": "worked",
+        "work": [
+          "Malaria risk stratification and transmission-driver analyses with the Malaria Atlas Project and Swiss TPH (CHAI)."
+        ]
+      },
+      {
+        "country": "South Africa",
+        "code": "ZAF",
+        "presence": "worked",
+        "work": [
+          "Malaria transmission-driver analyses (CHAI); Global MAST meeting, Johannesburg (2023).",
+          "AI consultant to NGS Engineering Solutions; AI programme for young entrepreneurs at GIBS (2026).",
+          "Business-intelligence work for clients (TTCS Global)."
+        ]
+      },
+      {
+        "country": "Kenya",
+        "code": "KEN",
+        "presence": "worked",
+        "work": [
+          "Seconded to CEMA, University of Nairobi, for the NTD Modelling Consortium (to 2025).",
+          "Vector Atlas meetings in Nairobi (2024, 2026).",
+          "M&E oversight for Higherlife Foundation programmes."
+        ]
+      },
+      {
+        "country": "Rwanda",
+        "code": "RWA",
+        "presence": "worked",
+        "work": [
+          "Conferences in Kigali: CPHIA (2022), Multilateral Initiative on Malaria (2024), and an NTD research conference (2025)."
+        ]
+      },
+      {
+        "country": "Zambia",
+        "code": "ZMB",
+        "presence": "worked",
+        "work": [
+          "Elimination 8 (E8) regional malaria meeting and CPHIA, Lusaka (2023).",
+          "Business-intelligence work for clients (TTCS Global)."
+        ]
+      },
+      {
+        "country": "Uganda",
+        "code": "UGA",
+        "presence": "worked",
+        "work": [
+          "Regional malaria meeting, Entebbe (2023).",
+          "Business-intelligence work for clients (TTCS Global)."
+        ]
+      },
+      {
+        "country": "Lesotho",
+        "code": "LSO",
+        "presence": "worked",
+        "work": [
+          "M&E technical leadership for Higherlife Foundation programmes."
+        ]
+      },
+      {
+        "country": "Burundi",
+        "code": "BDI",
+        "presence": "worked",
+        "work": [
+          "M&E technical leadership for Higherlife Foundation programmes."
+        ]
+      },
+      {
+        "country": "Malawi",
+        "code": "MWI",
+        "presence": "worked",
+        "work": [
+          "Business-intelligence work for clients (TTCS Global)."
+        ]
+      },
+      {
+        "country": "Ghana",
+        "code": "GHA",
+        "presence": "remote",
+        "work": [
+          "Stakeholder research on malaria treatment (Market Access Africa)."
+        ]
+      },
+      {
+        "country": "Nigeria",
+        "code": "NGA",
+        "presence": "remote",
+        "work": [
+          "Stakeholder research on malaria treatment (Market Access Africa)."
+        ]
+      },
+      {
+        "country": "Côte d'Ivoire",
+        "code": "CIV",
+        "presence": "remote",
+        "work": [
+          "Stakeholder research on malaria treatment (Market Access Africa)."
+        ]
+      },
+      {
+        "country": "Botswana",
+        "code": "BWA",
+        "presence": "visited",
+        "work": []
+      },
+      {
+        "country": "Democratic Republic of the Congo",
+        "code": "COD",
+        "presence": "visited",
+        "work": []
+      },
+      {
+        "country": "Australia",
+        "code": "AUS",
+        "presence": "worked",
+        "outsideAfrica": true,
+        "work": [
+          "Time with the Malaria Atlas Project and The Kids Research Institute Australia in Perth (2025)."
+        ]
+      },
+      {
+        "country": "Canada",
+        "code": "CAN",
+        "presence": "visited",
+        "outsideAfrica": true,
+        "work": []
+      }
     ]
   }
 }

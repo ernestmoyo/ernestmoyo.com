@@ -150,6 +150,41 @@ const workedCss = worked.map(c => `.map .${c}`).join(',') + '{stroke:var(--ink);
   worked.map(c => `body:has(.cty[data-c="${c}"]:hover) .map .${c},body:has(.cty[data-c="${c}"]:focus) .map .${c}`).join(',') +
   '{stroke:var(--accent);stroke-width:1.4;stroke-opacity:1}';
 
+// ---------------------------------------------------------------- footprint map
+const fp = cv.meta.footprint || [];
+const fpAfrica = fp.filter(f => !f.outsideAfrica);
+const fpBy = Object.fromEntries(fpAfrica.map(f => [f.code, f.presence]));
+const isoPaths = new Map();
+for (const [lon, lat, , iso] of hex.cells) {
+  isoPaths.set(iso, (isoPaths.get(iso) || '') + `M${f1((lon - X0) * K)} ${f1((Y0 - lat) * K)}h0`);
+}
+const pt = (lon, lat) => [f1((lon - X0) * K), f1((Y0 - lat) * K)];
+const CITY = { Harare: [31.05, -17.83], Windhoek: [17.08, -22.56], 'Dar es Salaam': [39.28, -6.8] };
+const homes = fpAfrica.filter(f => f.presence === 'lived' && CITY[f.city]).map(f => ({ ...f, xy: pt(...CITY[f.city]) }));
+const route = homes.map((h, i) => `${i ? 'L' : 'M'}${h.xy[0]} ${h.xy[1]}`).join('');
+const fpSvg = `<svg class="fpmap" viewBox="0 0 700 730" role="img" aria-labelledby="fp-t fp-d">
+<title id="fp-t">Where Ernest Moyo has lived and worked in Africa</title>
+<desc id="fp-d">Hexagon map of Africa. Lived in: ${homes.map(h => h.country).join(', ')}. Worked in: ${fpAfrica.filter(f => f.presence === 'worked').map(f => f.country).join(', ')}. Remote work with: ${fpAfrica.filter(f => f.presence === 'remote').map(f => f.country).join(', ')}. Visited: ${fpAfrica.filter(f => f.presence === 'visited').map(f => f.country).join(', ')}.</desc>
+<g>${[...isoPaths].map(([iso, d]) => `<path class="${fpBy[iso] ? 'p-' + fpBy[iso] : 'p-none'} ${iso}" d="${d}"/>`).join('')}</g>
+<path class="route" d="${route}"/>
+${homes.map((h, i) => `<g class="home"><circle cx="${h.xy[0]}" cy="${h.xy[1]}" r="5"/><text x="${h.xy[0] + (h.city === 'Windhoek' ? -9 : 9)}" y="${h.xy[1] + 4}" text-anchor="${h.city === 'Windhoek' ? 'end' : 'start'}">${i + 1}. ${esc(h.city)}</text></g>`).join('')}
+</svg>`;
+const fpLabel = { lived: 'Lived and worked', worked: 'Worked in', remote: 'Worked with remotely', visited: 'Visited' };
+const fpCard = f => `<article class="fpc" tabindex="0" data-c="${f.code}"><h3>${esc(f.country)} <span class="tag t-${f.presence}">${fpLabel[f.presence]}${f.years ? ', ' + esc(f.years) : ''}</span></h3>${f.work.length ? `<ul>${f.work.map(w => `<li>${esc(w)}</li>`).join('')}</ul>` : ''}</article>`;
+const fpCss = `.fpwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:start}
+.fpmap{width:100%;height:auto;position:sticky;top:16px}.fpmap g path{stroke-width:7.6;stroke-linecap:round;fill:none}
+.p-none{stroke:var(--line)}.p-lived{stroke:var(--accent)}.p-worked{stroke:var(--accent);stroke-opacity:.55}.p-remote{stroke:var(--accent);stroke-opacity:.25}.p-visited{stroke:var(--muted);stroke-opacity:.45}
+.fpkey i.p-none{background:var(--line)}.fpkey i.p-lived{background:var(--accent)}.fpkey i.p-worked{background:var(--accent);opacity:.55}.fpkey i.p-remote{background:var(--accent);opacity:.25}.fpkey i.p-visited{background:var(--muted);opacity:.45}
+.fpmap .route{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:4 4;vector-effect:non-scaling-stroke}
+.home circle{fill:var(--ink);stroke:var(--bg);stroke-width:2}.home text{font:600 12px var(--mono);fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:3px}
+.fpkey{display:flex;flex-wrap:wrap;gap:14px;font:12px var(--mono);color:var(--muted);margin:6px 0 14px}.fpkey i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.fpc{border-top:1px solid var(--line);padding:12px 0;outline:none}.fpc h3{font-size:1.05rem;font-weight:550;margin:0 0 4px}.fpc ul{margin:4px 0 0;padding-left:18px}.fpc li{margin:2px 0}
+.fpc:hover h3,.fpc:focus h3{color:var(--accent)}
+.tag{font:500 11.5px var(--mono);color:var(--muted);margin-left:6px;white-space:nowrap}
+.fpc details summary{cursor:pointer}
+${fpAfrica.map(f => `body:has(.fpc[data-c="${f.code}"]:hover) .fpmap .${f.code},body:has(.fpc[data-c="${f.code}"]:focus) .fpmap .${f.code}`).join(',')}{stroke:var(--ink);stroke-opacity:1}
+@media (max-width:860px){.fpwrap{grid-template-columns:1fr}.fpmap{position:static;max-width:460px;margin:0 auto}}`;
+
 // ---------------------------------------------------------------- agent surfaces
 const md = toMarkdown(cv);
 const llms = `# ${b.name}
@@ -280,6 +315,7 @@ figure{margin:0}
 .map path{stroke:var(--bg);stroke-width:.6;transition:stroke .2s}
 ${Array.from({ length: 10 }, (_, i) => `.q${i}{fill:var(--q${i})}`).join('')}
 ${workedCss}
+${fpCss}
 .dar .dot{fill:var(--ink)}.dar .ring{fill:none;stroke:var(--accent);stroke-width:1.2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;animation:foi 3.2s cubic-bezier(.2,.6,.3,1) infinite}.dar .r2{animation-delay:1.6s}
 @keyframes foi{0%{transform:scale(.6);opacity:1}100%{transform:scale(5.5);opacity:0}}
 .lbl{font:600 11px var(--mono);fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:3px}
@@ -383,6 +419,21 @@ ${b.profiles.map(p => `<link rel="me" href="${esc(p.url)}">`).join('\n')}
   <details class="past"><summary>Earlier roles (${past.length - 4})</summary>${past.slice(4).map(role).join('\n')}</details>
 </section>
 
+${fp.length ? `<div class="border" aria-hidden="true"></div>
+<section id="footprint" aria-labelledby="fp-h">
+  <h2 id="fp-h">Footprint across Africa</h2>
+  <p class="muted">From Harare to Windhoek to Dar es Salaam. Hover a country to find it on the map.</p>
+  <div class="fpkey"><span><i class="p-lived"></i>Lived and worked</span><span><i class="p-worked"></i>Worked in</span><span><i class="p-remote"></i>Worked with remotely</span><span><i class="p-visited"></i>Visited</span></div>
+  <div class="fpwrap">
+    <figure style="margin:0">${fpSvg}</figure>
+    <div>
+      ${fpAfrica.filter(f => f.presence !== 'visited').map(fpCard).join('\n      ')}
+      <article class="fpc"><h3>Beyond Africa</h3><ul>${fp.filter(f => f.outsideAfrica).map(f => `<li><b>${esc(f.country)}</b>${f.work.length ? ': ' + esc(f.work.join(' ')) : ' (visited)'}</li>`).join('')}</ul></article>
+      <p class="muted mono" style="font-size:12.5px">Also visited: ${fpAfrica.filter(f => f.presence === 'visited').map(f => esc(f.country)).join(', ')}.</p>
+    </div>
+  </div>
+</section>
+` : ''}
 <div class="border" aria-hidden="true"></div>
 <section id="built" aria-labelledby="built-h">
   <h2 id="built-h">Projects</h2>
