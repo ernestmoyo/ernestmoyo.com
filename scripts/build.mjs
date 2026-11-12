@@ -154,36 +154,42 @@ const workedCss = worked.map(c => `.map .${c}`).join(',') + '{stroke:var(--ink);
 const fp = cv.meta.footprint || [];
 const fpAfrica = fp.filter(f => !f.outsideAfrica);
 const fpBy = Object.fromEntries(fpAfrica.map(f => [f.code, f.presence]));
-const isoPaths = new Map();
-for (const [lon, lat, , iso] of hex.cells) {
-  isoPaths.set(iso, (isoPaths.get(iso) || '') + `M${f1((lon - X0) * K)} ${f1((Y0 - lat) * K)}h0`);
-}
-const pt = (lon, lat) => [f1((lon - X0) * K), f1((Y0 - lat) * K)];
-const CITY = { Harare: [31.05, -17.83], Windhoek: [17.08, -22.56], 'Dar es Salaam': [39.28, -6.8] };
-const homes = fpAfrica.filter(f => f.presence === 'lived' && CITY[f.city]).map(f => ({ ...f, xy: pt(...CITY[f.city]) }));
-const route = homes.map((h, i) => `${i ? 'L' : 'M'}${h.xy[0]} ${h.xy[1]}`).join('');
-const fpSvg = `<svg class="fpmap" viewBox="0 0 700 730" role="img" aria-labelledby="fp-t fp-d">
+const geo = JSON.parse(readFileSync(join(ROOT, 'data/africa-countries.json'), 'utf8'));
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48);
+const roleId = w => 'role-' + slug(w.name);
+const seeHref = name => { const w = cv.work.find(x => x.name.includes(name)); return w ? '#' + roleId(w) : null; };
+const homes = fpAfrica.filter(f => f.presence === 'lived' && geo.cities[f.city]).map(f => ({ ...f, xy: geo.cities[f.city] })).reverse(); // oldest first
+const arcPath = (p, q, bend = 0.22) => { const mx = (p[0] + q[0]) / 2, my = (p[1] + q[1]) / 2, dx = q[0] - p[0], dy = q[1] - p[1]; return `M${p[0]} ${p[1]}Q${f1(mx - dy * bend)} ${f1(my + dx * bend)} ${q[0]} ${q[1]}`; };
+const route = homes.slice(1).map((h, i) => `<path class="leg" marker-end="url(#fp-arrow)" d="${arcPath(homes[i].xy, h.xy)}"/>`).join('');
+const now = homes[homes.length - 1];
+const fpSvg = `<svg class="fpmap" viewBox="${geo.viewBox}" role="img" aria-labelledby="fp-t fp-d">
 <title id="fp-t">Where Ernest Moyo has lived and worked in Africa</title>
-<desc id="fp-d">Hexagon map of Africa. Lived in: ${homes.map(h => h.country).join(', ')}. Worked in: ${fpAfrica.filter(f => f.presence === 'worked').map(f => f.country).join(', ')}. Remote work with: ${fpAfrica.filter(f => f.presence === 'remote').map(f => f.country).join(', ')}. Visited: ${fpAfrica.filter(f => f.presence === 'visited').map(f => f.country).join(', ')}.</desc>
-<g>${[...isoPaths].map(([iso, d]) => `<path class="${fpBy[iso] ? 'p-' + fpBy[iso] : 'p-none'} ${iso}" d="${d}"/>`).join('')}</g>
-<path class="route" d="${route}"/>
-${homes.map((h, i) => `<g class="home"><circle cx="${h.xy[0]}" cy="${h.xy[1]}" r="5"/><text x="${h.xy[0] + (h.city === 'Windhoek' ? -9 : 9)}" y="${h.xy[1] + 4}" text-anchor="${h.city === 'Windhoek' ? 'end' : 'start'}">${i + 1}. ${esc(h.city)}</text></g>`).join('')}
+<desc id="fp-d">Map of Africa. Lived in, most recent first: ${[...homes].reverse().map(h => h.country).join(', ')}. Worked in: ${fpAfrica.filter(f => f.presence === 'worked').map(f => f.country).join(', ')}. Remote work with: ${fpAfrica.filter(f => f.presence === 'remote').map(f => f.country).join(', ')}. Visited: ${fpAfrica.filter(f => f.presence === 'visited').map(f => f.country).join(', ')}.</desc>
+<defs><marker id="fp-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="arrow"/></marker></defs>
+<g class="cty-shapes">${Object.entries(geo.shapes).map(([iso, d]) => `<path class="${fpBy[iso] ? 'p-' + fpBy[iso] : 'p-none'} ${iso}" d="${d}"/>`).join('')}</g>
+${route}
+${homes.map(h => { const left = h.city !== 'Harare'; return `<g class="home${h === now ? ' now' : ''}">${h === now ? `<circle class="ring" cx="${h.xy[0]}" cy="${h.xy[1]}" r="7"/>` : ''}<circle class="dot" cx="${h.xy[0]}" cy="${h.xy[1]}" r="5.5"/><text x="${h.xy[0] + (left ? -11 : 11)}" y="${h.xy[1] + 5}" text-anchor="${left ? 'end' : 'start'}">${esc(h.city)}${h === now ? ' · now' : ''}</text></g>`; }).join('')}
 </svg>`;
-const fpLabel = { lived: 'Lived and worked', worked: 'Worked in', remote: 'Worked with remotely', visited: 'Visited' };
-const fpCard = f => `<article class="fpc" tabindex="0" data-c="${f.code}"><h3>${esc(f.country)} <span class="tag t-${f.presence}">${fpLabel[f.presence]}${f.years ? ', ' + esc(f.years) : ''}</span></h3>${f.work.length ? `<ul>${f.work.map(w => `<li>${esc(w)}</li>`).join('')}</ul>` : ''}</article>`;
-const fpCss = `.fpwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:start}
-.fpmap{width:100%;height:auto;position:sticky;top:16px}.fpmap g path{stroke-width:7.6;stroke-linecap:round;fill:none}
-.p-none{stroke:var(--line)}.p-lived{stroke:var(--accent)}.p-worked{stroke:var(--accent);stroke-opacity:.55}.p-remote{stroke:var(--accent);stroke-opacity:.25}.p-visited{stroke:var(--muted);stroke-opacity:.45}
-.fpkey i.p-none{background:var(--line)}.fpkey i.p-lived{background:var(--accent)}.fpkey i.p-worked{background:var(--accent);opacity:.55}.fpkey i.p-remote{background:var(--accent);opacity:.25}.fpkey i.p-visited{background:var(--muted);opacity:.45}
-.fpmap .route{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:4 4;vector-effect:non-scaling-stroke}
-.home circle{fill:var(--ink);stroke:var(--bg);stroke-width:2}.home text{font:600 12px var(--mono);fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:3px}
-.fpkey{display:flex;flex-wrap:wrap;gap:14px;font:12px var(--mono);color:var(--muted);margin:6px 0 14px}.fpkey i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
-.fpc{border-top:1px solid var(--line);padding:12px 0;outline:none}.fpc h3{font-size:1.05rem;font-weight:550;margin:0 0 4px}.fpc ul{margin:4px 0 0;padding-left:18px}.fpc li{margin:2px 0}
-.fpc:hover h3,.fpc:focus h3{color:var(--accent)}
+const fpLabel = { lived: 'Lived and worked', worked: 'Worked in', remote: 'Remote work', visited: 'Visited' };
+const fpRow = f => { const href = f.see && seeHref(f.see); return `<article class="fpc" tabindex="0" data-c="${f.code}"><h3><i class="sw p-${f.presence}"></i>${esc(f.country)} <span class="tag">${fpLabel[f.presence]}${f.years ? ', ' + esc(f.years) : ''}</span></h3><p>${esc(f.line)}${href ? ` <a class="more" href="${href}">See more</a>` : ''}</p></article>`; };
+const fpCss = `.fpwrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:32px;align-items:start}
+.fpmap{width:100%;height:auto;position:sticky;top:16px;overflow:visible}
+.cty-shapes path{stroke:var(--bg);stroke-width:.8;stroke-linejoin:round;transition:fill .2s}
+.p-none{fill:var(--line)}.p-lived{fill:var(--accent)}.p-worked{fill:color-mix(in srgb,var(--accent) 42%,var(--line))}.p-remote{fill:color-mix(in srgb,var(--accent) 25%,var(--line))}.p-visited{fill:color-mix(in srgb,var(--muted) 55%,var(--line))}
+.fpmap .leg{fill:none;stroke:var(--ink);stroke-width:2;stroke-dasharray:5 4;stroke-linecap:round}.fpmap .arrow{fill:var(--ink)}
+.home .dot{fill:var(--bg);stroke:var(--ink);stroke-width:2.5}.home.now .dot{fill:var(--ink)}
+.home .ring{fill:none;stroke:var(--ink);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:foi 3s cubic-bezier(.2,.6,.3,1) infinite}
+.home text{font:600 15px var(--mono);fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:4px}
+.fpkey{display:flex;flex-wrap:wrap;gap:14px;font:12px var(--mono);color:var(--muted);margin:6px 0 14px}
+.sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:8px;vertical-align:0}
+.sw.p-lived{background:var(--accent)}.sw.p-worked{background:color-mix(in srgb,var(--accent) 42%,var(--line))}.sw.p-remote{background:color-mix(in srgb,var(--accent) 25%,var(--line))}.sw.p-visited{background:color-mix(in srgb,var(--muted) 55%,var(--line))}
+.fpc{border-top:1px solid var(--line);padding:10px 0;outline:none}.fpc h3{font-size:1.02rem;font-weight:550;margin:0 0 2px}.fpc p{margin:0;color:var(--muted)}
+.fpc:hover h3,.fpc:focus h3{color:var(--accent)}.fpc .more{font:12.5px var(--mono);white-space:nowrap}
 .tag{font:500 11.5px var(--mono);color:var(--muted);margin-left:6px;white-space:nowrap}
-.fpc details summary{cursor:pointer}
-${fpAfrica.map(f => `body:has(.fpc[data-c="${f.code}"]:hover) .fpmap .${f.code},body:has(.fpc[data-c="${f.code}"]:focus) .fpmap .${f.code}`).join(',')}{stroke:var(--ink);stroke-opacity:1}
-@media (max-width:860px){.fpwrap{grid-template-columns:1fr}.fpmap{position:static;max-width:460px;margin:0 auto}}`;
+${fpAfrica.map(f => `body:has(.fpc[data-c="${f.code}"]:hover) .fpmap .${f.code},body:has(.fpc[data-c="${f.code}"]:focus) .fpmap .${f.code}`).join(',')}{fill:var(--ink)}
+@media (max-width:860px){.fpwrap{grid-template-columns:1fr}.fpmap{position:static;max-width:520px;margin:0 auto}}
+@media (prefers-reduced-motion:reduce){.home .ring{animation:none}}`;
+
 
 // ---------------------------------------------------------------- agent surfaces
 const md = toMarkdown(cv);
@@ -269,7 +275,7 @@ const openapi = {
 // ---------------------------------------------------------------- HTML sections
 const current = cv.work.filter(isCurrent);
 const past = cv.work.filter(w => !isCurrent(w));
-const role = w => `<article class="role">
+const role = w => `<article class="role" id="${roleId(w)}">
   <p class="when">${esc(range(w.startDate, w.endDate))}</p>
   <div><h3>${esc(w.position)}</h3><p class="org">${w.url ? `<a href="${esc(w.url)}">${esc(w.name)}</a>` : esc(w.name)}${w.location ? ` · <span class="muted">${esc(w.location)}</span>` : ''}</p>
   ${w.summary ? `<p>${esc(w.summary)}</p>` : ''}${w.highlights?.length ? `<ul>${w.highlights.map(h => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}</div>
@@ -422,18 +428,19 @@ ${b.profiles.map(p => `<link rel="me" href="${esc(p.url)}">`).join('\n')}
 ${fp.length ? `<div class="border" aria-hidden="true"></div>
 <section id="footprint" aria-labelledby="fp-h">
   <h2 id="fp-h">Footprint across Africa</h2>
-  <p class="muted">From Harare to Windhoek to Dar es Salaam. Hover a country to find it on the map.</p>
-  <div class="fpkey"><span><i class="p-lived"></i>Lived and worked</span><span><i class="p-worked"></i>Worked in</span><span><i class="p-remote"></i>Worked with remotely</span><span><i class="p-visited"></i>Visited</span></div>
+  <p class="muted">Based in Dar es Salaam, after Windhoek and Harare. Hover a country to find it on the map.</p>
+  <div class="fpkey">${Object.entries(fpLabel).map(([k, v]) => `<span><i class="sw p-${k}"></i>${v}</span>`).join('')}</div>
   <div class="fpwrap">
     <figure style="margin:0">${fpSvg}</figure>
     <div>
-      ${fpAfrica.filter(f => f.presence !== 'visited').map(fpCard).join('\n      ')}
-      <article class="fpc"><h3>Beyond Africa</h3><ul>${fp.filter(f => f.outsideAfrica).map(f => `<li><b>${esc(f.country)}</b>${f.work.length ? ': ' + esc(f.work.join(' ')) : ' (visited)'}</li>`).join('')}</ul></article>
-      <p class="muted mono" style="font-size:12.5px">Also visited: ${fpAfrica.filter(f => f.presence === 'visited').map(f => esc(f.country)).join(', ')}.</p>
+      ${fpAfrica.filter(f => f.presence !== 'visited').map(fpRow).join('\n      ')}
+      <article class="fpc"><h3>Beyond Africa</h3><p>${fp.filter(f => f.outsideAfrica).map(f => `<b>${esc(f.country)}</b>${f.line ? ': ' + esc(f.line) : ' (visited)'}`).join('. ')}.</p></article>
+      <p class="muted mono" style="font-size:12.5px;margin-top:10px">Also visited: ${fpAfrica.filter(f => f.presence === 'visited').map(f => esc(f.country)).join(', ')}.</p>
     </div>
   </div>
 </section>
-` : ''}
+<script>addEventListener('click',e=>{const a=e.target.closest('a.more');if(!a)return;const t=document.querySelector(a.getAttribute('href'));const d=t&&t.closest('details');if(d)d.open=true;});</script>
+` : ''}}
 <div class="border" aria-hidden="true"></div>
 <section id="built" aria-labelledby="built-h">
   <h2 id="built-h">Projects</h2>
