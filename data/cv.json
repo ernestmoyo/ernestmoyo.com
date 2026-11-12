@@ -98,11 +98,19 @@
     },
     {
       "name": "Market Access Africa",
-      "position": "Consultant, Malaria Treatment Market Research",
-      "location": "Tanzania",
-      "startDate": "2024-08",
-      "endDate": "2024-12",
-      "summary": "Country-level analysis of malaria treatment markets and stakeholder influence pathways across governments, national malaria programmes, regulators and financing bodies."
+      "position": "Consultant (Tanzania Country Lead; Digital Systems Support)",
+      "url": "https://marketaccess.africa",
+      "location": "Dar es Salaam, Tanzania (remote, pan-African)",
+      "startDate": "2022-01",
+      "summary": "Consultant under a standing framework agreement with Market Access Africa, an advisory firm working on access to health products across Africa. Engaged on successive scopes of work in market research, malaria treatment policy and regional pooled procurement.",
+      "highlights": [
+        "2026: digital systems support to a regional pooled procurement project (EAC and SADC): rebuilt the IT assessment of regional procurement information systems and supported the concept for an IT and digital systems workshop for regional focal points.",
+        "2025 to 2026: Tanzania Country Lead on a seven-country study of the policy and market pathway for a next-generation malaria treatment (Tanzania, Ghana, Kenya, Rwanda, Uganda, Nigeria, Côte d'Ivoire). Led Tanzania stakeholder mapping, interviews with ministry, national malaria programme, Global Fund, WHO, implementing partner and private-sector stakeholders, and coordinated a local consultant.",
+        "Built the transcript pipeline for the study: transcribed more than 50 interviews with Whisper, cleaned and coded transcripts for four countries, and benchmarked AI-assisted thematic coding against manual coding.",
+        "Produced the Tanzania stakeholder influence map (policy and financing influence, including Zanzibar as a candidate pilot setting) and target stakeholder profiles for the client.",
+        "2022: Africa market research for a haematology diagnostics client: synthesis of a 15-country review into the summary deck.",
+        "Named expert on proposals for Global Fund therapeutic efficacy study optimisation (2026) and malaria market intelligence (2026)."
+      ]
     },
     {
       "name": "NTD Modelling Consortium (University of Oxford, Gates Foundation)",
@@ -140,6 +148,18 @@
       "highlights": [
         "Led the UNICEF Spotlight Initiative baseline on violence against women and girls in Zimbabwe (2019-2020).",
         "Managed 8 to 12 staff across four countries."
+      ]
+    },
+    {
+      "name": "World Health Organization (Zimbabwe) and Ministry of Health and Child Care, Zimbabwe",
+      "position": "Consultant, COVID-19 Outbreak Investigation",
+      "location": "Zimbabwe",
+      "startDate": "2020-12",
+      "endDate": "2021-02",
+      "summary": "Analysed and wrote up the investigation of a COVID-19 outbreak in a closed population (John Tallach High School, Umguza District, Matabeleland North).",
+      "highlights": [
+        "Extracted field data, reconciled the outbreak line list across testing cycles and produced the epidemic curve.",
+        "Authored the outbreak investigation report through review rounds with WHO and Ministry of Health and Child Care surveillance and emergency preparedness teams."
       ]
     },
     {
