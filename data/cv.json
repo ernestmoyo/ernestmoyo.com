@@ -74,6 +74,19 @@
       "summary": "Foundation supporting neglected areas across Africa through research, innovation and development programmes."
     },
     {
+      "name": "African Community Health Trust (ACHT)",
+      "position": "Co-founder and Public Health Lead",
+      "url": "https://achtzim.org/",
+      "location": "Harare, Zimbabwe",
+      "startDate": "2015-10",
+      "summary": "Volunteer health trust that takes free medical and dental care to underserved communities in Zimbabwe: rural areas, schools, care homes and prisons.",
+      "highlights": [
+        "Co-founded the trust in 2015; leads its public health work.",
+        "Community outreach clinics and school oral-health education, delivered by volunteer health professionals with churches and local partners.",
+        "About 49 outreaches reaching some 24,500 people since 2015 (ACHT figures)."
+      ]
+    },
+    {
       "name": "Africa Modelling Bridge",
       "position": "Founder and Lead Modeller",
       "url": "https://amb.7squareinc.com/",
@@ -81,7 +94,7 @@
       "startDate": "2026",
       "highlights": [
         "Pilot countries: Tanzania, Malawi and the Democratic Republic of the Congo.",
-        "Malaria first; then surveillance, health systems, and climate and health."
+        "Facilitates the country work: frames ministry of health resource-allocation decisions as modelling questions, leads the modelling with African researchers and students, and turns the results into recommendations for governments and funders, starting with malaria."
       ]
     },
     {
@@ -92,7 +105,7 @@
       "startDate": "2026-09",
       "highlights": [
         "Co-leads the Lusophone working group: Mozambique, then Angola; Gavi 6.0 and 2027 supplementary immunisation activity planning.",
-        "Helped start the Francophone working group (Democratic Republic of the Congo, Madagascar)."
+        "Maps national modellers in Lusophone countries and connects them with immunisation programmes so measles analysis is done in country."
       ]
     },
     {
@@ -617,7 +630,7 @@
         "years": "until 2021",
         "city": "Harare",
         "see": "Delta Philanthropies",
-        "line": "Malaria elimination with the Ministry of Health (CHAI), cholera elimination M&E (Higherlife), and a WHO COVID-19 outbreak investigation."
+        "line": "Malaria elimination with the Ministry of Health (CHAI), cholera elimination M&E (Higherlife), a WHO COVID-19 outbreak investigation, and community health outreach with ACHT (since 2015)."
       },
       {
         "country": "Angola",
