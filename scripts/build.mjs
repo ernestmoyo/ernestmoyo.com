@@ -70,7 +70,7 @@ const graph = {
       })),
       knowsAbout: [
         'Malaria epidemiology', 'Bayesian geostatistics', 'Spatial and spatio-temporal statistics', 'Gaussian processes',
-        'Infectious disease modelling', 'Neglected tropical diseases', 'Disease risk mapping', 'Force of infection',
+        'Infectious disease modelling', 'Neglected tropical diseases', 'Cholera elimination', 'Outbreak investigation', 'Disease risk mapping', 'Force of infection',
         'DHIS2', 'Health information systems', 'Monitoring and evaluation', 'AI agents', 'Model Context Protocol',
         'AI governance', 'Digital transformation in Africa', 'Actuarial science',
       ],

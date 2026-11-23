@@ -5,7 +5,7 @@
     "label": "Epidemiologist and Health Data Scientist | Bayesian malaria mapping and AI for health in Africa",
     "email": "hello@ernestmoyo.com",
     "url": "https://ernestmoyo.com",
-    "summary": "Epidemiologist and health data scientist with 15 years in data and analytics, nine of them in public health with ministries of health across Southern and East Africa. PhD researcher with the Vector Atlas (University of Oxford, icipe and The Kids Research Institute Australia), registered at NM-AIST; Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute); Co-Founder of 7Square Inc. (founded 2021) and of Hoop Africa Foundation. Trains national malaria programme teams in geospatial modelling and builds analytics capacity in the institutions that use the models. Trained as an actuary.",
+    "summary": "Epidemiologist and health data scientist with 15 years in data and analytics, nine of them in public health with ministries of health across Southern and East Africa. PhD researcher with the Vector Atlas (University of Oxford, icipe and The Kids Research Institute Australia), registered at NM-AIST; Research Scientist with the Malaria Atlas Project (East Africa node, Ifakara Health Institute); Co-Founder of 7Square Inc. (founded 2021) and of Hoop Africa Foundation. Trains national malaria programme teams in geospatial modelling and builds analytics capacity in the institutions that use the models. Has contributed to cholera elimination planning in Zimbabwe and a WHO COVID-19 outbreak investigation. Trained as an actuary.",
     "location": {
       "city": "Dar es Salaam",
       "countryCode": "TZ",
@@ -156,6 +156,7 @@
       "summary": "Joined through the Gates Foundation-funded NTD Modelling Consortium grant, led by the University of Oxford Big Data Institute, in which the Pan-African Mosquito Control Association (PAMCA) builds neglected tropical disease modelling capacity in Africa with Ifakara Health Institute as its centre of excellence. Senior Research and Data Scientist with PAMCA from February 2024, then Research Scientist (collaborator) at Ifakara Health Institute on the DM4DM project from July 2024. Built predictive models for malaria and NTD elimination and supported national programmes to use them.",
       "highlights": [
         "Seconded to the Center for Epidemiological Modelling and Analysis (CEMA), University of Nairobi, to continue the NTD Modelling Consortium work until July 2025.",
+        "At CEMA, contributed to data curation for a systematic review and meta-analysis of schistosomiasis control and progress towards elimination in Africa (in press, The Lancet Regional Health – Africa).",
         "Supported the build of MosquitoDB, a vector-surveillance database, and its web decision-support tools."
       ]
     },
@@ -182,6 +183,7 @@
       "summary": "Ran monitoring and evaluation across Zimbabwe, Lesotho, Kenya and Burundi for rural transformation, education, WASH, nutrition, public health and disaster-relief programmes.",
       "highlights": [
         "Monitoring and evaluation lead for the Cholera Elimination Secretariat, hosted by Higherlife Foundation and funded by Delta Philanthropies: updated the cholera M&E frameworks, Theories of Change, targets and indicators.",
+        "Contributed to the development of Zimbabwe's ten-year cholera elimination plan through the Cholera Elimination Secretariat, a Higherlife Foundation project, working with the Ministry of Health and Child Care and WHO.",
         "Contributed to Zimbabwe's cholera elimination operational plan and hotspot prioritisation with the Ministry of Health and Child Care and WHO (2020-2021).",
         "Designed the cholera knowledge, attitudes and practices study tools and built KoBoToolbox and ODK data collection tools for cholera, education and agriculture programmes.",
         "Led the UNICEF Spotlight Initiative baseline on violence against women and girls in Zimbabwe (2019-2020).",
@@ -388,6 +390,16 @@
       ]
     },
     {
+      "name": "Emergency preparedness and outbreak investigation",
+      "keywords": [
+        "cholera elimination planning (Zimbabwe)",
+        "outbreak investigation (COVID-19, WHO Zimbabwe)",
+        "hotspot prioritisation",
+        "M&E for disaster-relief programmes",
+        "coordination with ministries of health and WHO"
+      ]
+    },
+    {
       "name": "AI and agents",
       "keywords": [
         "LLM agents",
@@ -560,7 +572,7 @@
   "meta": {
     "canonical": "https://ernestmoyo.com/cv.json",
     "version": "1.0.0",
-    "lastModified": "2026-11-12T00:00:00Z",
+    "lastModified": "2026-11-23T00:00:00Z",
     "countries": [
       "Tanzania",
       "Zimbabwe",
@@ -630,7 +642,7 @@
         "years": "until 2021",
         "city": "Harare",
         "see": "Delta Philanthropies",
-        "line": "Malaria elimination with the Ministry of Health (CHAI), cholera elimination M&E (Higherlife), a WHO COVID-19 outbreak investigation, and community health outreach with ACHT (since 2015)."
+        "line": "Malaria elimination with the Ministry of Health (CHAI), cholera elimination planning and M&E with the Ministry and WHO (Higherlife), a WHO COVID-19 outbreak investigation, and community health outreach with ACHT (since 2015)."
       },
       {
         "country": "Angola",
